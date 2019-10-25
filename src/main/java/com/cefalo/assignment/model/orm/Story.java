@@ -16,7 +16,8 @@ public class Story implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    @Column(updatable = false)
+    private Long id;
 
     @JsonIgnore @Transient
     private String error;

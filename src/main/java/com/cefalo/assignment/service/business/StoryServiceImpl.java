@@ -2,9 +2,11 @@ package com.cefalo.assignment.service.business;
 
 import com.cefalo.assignment.model.orm.Story;
 import com.cefalo.assignment.service.orm.StoryRepository;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +14,7 @@ import java.util.Optional;
 @Service
 public class StoryServiceImpl implements StoryService{
     @Autowired StoryRepository storyRepository;
+    @Autowired StoryUpdateAndDeleteSerive storyUpdateAndDeleteSerive;
 
     @Override
     public Optional<Story> postStoryObject(Story story) {
@@ -30,5 +33,8 @@ public class StoryServiceImpl implements StoryService{
         return storyRepository.findById(storyId);
     }
 
-
+    @Override
+    public Optional<Story> updateStoryById(Long storyId, Story newVersionOfStory) throws Exception{
+        return storyUpdateAndDeleteSerive.handleStoryUpdate(storyId, newVersionOfStory) ;
+    }
 }

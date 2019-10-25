@@ -22,14 +22,16 @@ public class StoryController {
     @Autowired
     StoryService storyService;
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     public Story postStoryObject(@RequestBody Story story){
         return storyService.postStoryObject(story).orElse(story);
     }
 
-    @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public List<Story> getAllStory(){
@@ -41,6 +43,22 @@ public class StoryController {
         Optional<Story> fetchedStory = storyService.getStoryById(storyId);
         return fetchedStory.isPresent() ? new ResponseEntity(fetchedStory.get(), HttpStatus.OK)
                 : new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping(value = "/{storyId}",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity updateStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "storyId") Long storyId){
+        ResponseEntity responseEntity = null;
+        try {
+            Optional<Story> fetchedStory = storyService.updateStoryById(storyId, newVersionOfStory);
+            responseEntity = fetchedStory.isPresent() ? new ResponseEntity(fetchedStory.get(), HttpStatus.OK)
+                    : new ResponseEntity(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }finally {
+            return responseEntity;
+        }
     }
 
     private Throwable getRootThrowable(Throwable e) {
