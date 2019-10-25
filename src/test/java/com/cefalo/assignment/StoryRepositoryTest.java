@@ -22,7 +22,7 @@ class StoryRepositoryTest {
 
     @Test
     void contextLoads() {
-        Story story = new Story("phase-1", "ME is wrong word", LocalDateTime.now());
+        Story story = new Story("phase-1", "ME is wrong word", "05 July 2018");
         Story savedStory = storyRepository.save(story);
         assert (savedStory.getId() != null);
     }

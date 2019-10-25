@@ -19,7 +19,6 @@ public class Story implements Serializable {
     @JsonIgnore
     Long id;
 
-    @Column(unique = true)
     private String title;
     private String body;
     private String publishedDate;
