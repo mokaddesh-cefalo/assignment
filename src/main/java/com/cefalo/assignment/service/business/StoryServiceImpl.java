@@ -37,4 +37,9 @@ public class StoryServiceImpl implements StoryService{
     public Optional<Story> updateStoryById(Long storyId, Story newVersionOfStory) throws Exception{
         return storyUpdateAndDeleteSerive.handleStoryUpdate(storyId, newVersionOfStory) ;
     }
+
+    @Override
+    public void deleteStoryById(Long storyId) throws Exception{
+        storyUpdateAndDeleteSerive.handleStoryDelete(storyId);
+    }
 }

@@ -61,6 +61,15 @@ public class StoryController {
         }
     }
 
+    @DeleteMapping("/{storyId}")
+    public void deleteStoryById(@PathVariable(value = "storyId") Long storyId, HttpServletResponse response){
+        try {
+            storyService.deleteStoryById(storyId); response.setStatus(200);
+        }catch (Exception e){
+            response.setStatus(400);
+        }
+    }
+
     private Throwable getRootThrowable(Throwable e) {
         while (e.getCause() != null){
             e = e.getCause();

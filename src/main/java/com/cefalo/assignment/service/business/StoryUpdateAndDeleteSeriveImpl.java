@@ -37,4 +37,9 @@ public class StoryUpdateAndDeleteSeriveImpl implements StoryUpdateAndDeleteSeriv
         }
         return newVersionOfStory;
     }
+
+    public void handleStoryDelete(Long storyId) throws Exception{
+        Optional<Story> story = storyRepository.findById(storyId);
+        if(story.isPresent()) storyRepository.delete(story.get());
+    }
 }
