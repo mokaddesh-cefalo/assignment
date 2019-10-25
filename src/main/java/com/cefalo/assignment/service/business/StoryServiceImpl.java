@@ -5,6 +5,8 @@ import com.cefalo.assignment.service.orm.StoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,5 +16,12 @@ public class StoryServiceImpl implements StoryService{
     @Override
     public Optional<Story> postStoryObject(Story story) {
         return Optional.ofNullable(storyRepository.save(story));
+    }
+
+    @Override
+    public List<Story> getAllStoryJson(){
+        List<Story> stories = new ArrayList<>();
+        storyRepository.findAll().forEach(story -> stories.add(story));
+        return stories;
     }
 }
