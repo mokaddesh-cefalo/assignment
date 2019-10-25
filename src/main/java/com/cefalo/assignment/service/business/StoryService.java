@@ -7,5 +7,6 @@ import java.util.Optional;
 
 public interface StoryService {
     Optional<Story> postStoryObject(Story story);
-    List<Story> getAllStoryJson();
+    List<Story> getAllStory();
+    Optional<Story> getStoryById(Long storyId);
 }

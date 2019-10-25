@@ -16,8 +16,10 @@ public class Story implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
     Long id;
+
+    @JsonIgnore @Transient
+    private String error;
 
     private String title;
     private String body;

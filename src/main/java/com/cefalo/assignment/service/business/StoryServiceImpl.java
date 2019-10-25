@@ -19,9 +19,16 @@ public class StoryServiceImpl implements StoryService{
     }
 
     @Override
-    public List<Story> getAllStoryJson(){
+    public List<Story> getAllStory(){
         List<Story> stories = new ArrayList<>();
         storyRepository.findAll().forEach(story -> stories.add(story));
         return stories;
     }
+
+    @Override
+    public Optional<Story> getStoryById(Long storyId){
+        return storyRepository.findById(storyId);
+    }
+
+
 }

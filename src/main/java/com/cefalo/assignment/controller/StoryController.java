@@ -22,18 +22,25 @@ public class StoryController {
     @Autowired
     StoryService storyService;
 
-    @PostMapping(consumes = "application/json", produces = "application/json")
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     public Story postStoryObject(@RequestBody Story story){
         return storyService.postStoryObject(story).orElse(story);
     }
 
-    @GetMapping(consumes = "application/json", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public List<Story> getAllStoryJson(){
-        return storyService.getAllStoryJson();
+    public List<Story> getAllStory(){
+        return storyService.getAllStory();
+    }
+
+    @GetMapping("/{storyId}")
+    public ResponseEntity getStoryById(@PathVariable(value = "storyId") Long storyId){
+        Optional<Story> fetchedStory = storyService.getStoryById(storyId);
+        return fetchedStory.isPresent() ? new ResponseEntity(fetchedStory.get(), HttpStatus.OK)
+                : new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
     private Throwable getRootThrowable(Throwable e) {
