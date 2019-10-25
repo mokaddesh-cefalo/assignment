@@ -22,9 +22,9 @@ public class Story implements Serializable {
     @Column(unique = true)
     private String title;
     private String body;
-    private LocalDateTime publishedDate;
+    private String publishedDate;
 
-    public Story(String title, String body, LocalDateTime publishedDate){
+    public Story(String title, String body, String publishedDate){
         this.title = title;
         this.body = body;
         this.publishedDate = publishedDate;
