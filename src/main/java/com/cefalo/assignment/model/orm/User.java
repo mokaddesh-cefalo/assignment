@@ -21,7 +21,6 @@ public class User {
     private String userName;
 
     @Column(nullable = false)
-    @JsonIgnore
     private String password;
 
     private Boolean active;

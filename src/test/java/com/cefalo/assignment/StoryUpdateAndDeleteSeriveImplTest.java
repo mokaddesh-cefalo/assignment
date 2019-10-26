@@ -42,7 +42,7 @@ public class StoryUpdateAndDeleteSeriveImplTest {
                     field.setAccessible(true);
                 }
                 System.out.println(field.getName());
-                if(field.get(newStory) == null) {
+                if(field.get(newStory) == null && field.get(oldStory) != null) {
                     field.set(newStory, field.get(oldStory));
                 }
             }

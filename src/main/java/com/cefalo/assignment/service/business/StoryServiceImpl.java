@@ -35,18 +35,16 @@ public class StoryServiceImpl implements StoryService{
     public List<Story> getAllStory(){
         List<Story> stories = new ArrayList<>();
         storyRepository.findAll().forEach(story -> {
-                    story.setCreatorName(story.getCreator().getUserName());
-                    stories.add(story);
-                });
+            story.setCreatorName();
+            stories.add(story);
+        });
         return stories;
     }
 
     @Override
     public Optional<Story> getStoryById(Long storyId){
         Optional<Story> story = storyRepository.findById(storyId);
-        if(story.isPresent()){
-            story.get().setCreatorName( story.get().getCreator().getUserName());
-        }
+        if(story.isPresent()) story.get().setCreatorName();
         return story;
     }
 
@@ -57,9 +55,15 @@ public class StoryServiceImpl implements StoryService{
 
         if(olderVersionOfStory.isPresent() == false) {
             return olderVersionOfStory;
-        }else {
+        }
+
+        String storyCreatorName = olderVersionOfStory.get().getCreatorName();
+
+        if(getLoggedInUserName().equals(storyCreatorName)){
             newVersionOfStory = updateOldStoryByNewStory(olderVersionOfStory.get(), newVersionOfStory);
             return Optional.ofNullable(storyRepository.save(newVersionOfStory));
+        } else {
+            throw new Exception(getLoggedInUserName() + " is not authorized to update " + storyId);
         }
     }
 
@@ -68,10 +72,11 @@ public class StoryServiceImpl implements StoryService{
     public Story updateOldStoryByNewStory(Story olderVersionOfStory, Story newVersionOfStory) throws IllegalArgumentException, IllegalAccessException {
         for(Field field: Story.class.getDeclaredFields()) {
             if(field.getName().equals("creator")) continue;
+
             if (Modifier.isPrivate(field.getModifiers()))  {
                 field.setAccessible(true);
             }
-            System.out.println(field.getName());
+
             if(field.get(newVersionOfStory) == null) {
                 field.set(newVersionOfStory, field.get(olderVersionOfStory));
             }
@@ -80,8 +85,13 @@ public class StoryServiceImpl implements StoryService{
     }
 
     @Override
-    public void deleteStoryById(Long storyId) throws Exception{
+    public long deleteStoryById(Long storyId) {
         Optional<Story> story = storyRepository.findById(storyId);
-        if(story.isPresent()) storyRepository.delete(story.get());
+        if(!story.isPresent()) return 404;
+
+        String storyCreatorName = story.get().getCreatorName();
+
+        if(getLoggedInUserName().equals(storyCreatorName)) storyRepository.delete(story.get());
+        return (getLoggedInUserName().equals(storyCreatorName)) ? 200 : 401;
     }
 }

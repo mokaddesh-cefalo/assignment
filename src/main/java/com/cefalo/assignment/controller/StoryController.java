@@ -27,7 +27,7 @@ public class StoryController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     public Story postStoryObject(@RequestBody Story story){
-        return storyService.postStoryObject(story).orElse(story);
+        return storyService.postStoryObject(story).get();
     }
 
     @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
@@ -55,7 +55,7 @@ public class StoryController {
             responseEntity = fetchedStory.isPresent() ? new ResponseEntity(fetchedStory.get(), HttpStatus.OK)
                     : new ResponseEntity(HttpStatus.NOT_FOUND);
         }catch (Exception e){
-            responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.UNAUTHORIZED);
         }finally {
             return responseEntity;
         }
@@ -63,11 +63,7 @@ public class StoryController {
 
     @DeleteMapping("/{storyId}")
     public void deleteStoryById(@PathVariable(value = "storyId") Long storyId, HttpServletResponse response){
-        try {
-            storyService.deleteStoryById(storyId); response.setStatus(200);
-        }catch (Exception e){
-            response.setStatus(400);
-        }
+        response.setStatus((int)storyService.deleteStoryById(storyId));
     }
 
     private Throwable getRootThrowable(Throwable e) {

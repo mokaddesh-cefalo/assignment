@@ -27,7 +27,7 @@ public class Story implements Serializable {
 
     @ManyToOne @JoinColumn(name = "user_name", nullable = false, updatable = false)
     @JsonIgnore
-    User creator;
+    private User creator;
 
     private String title;
     private String body;
@@ -42,6 +42,14 @@ public class Story implements Serializable {
     @Column(updatable = false)
     private LocalDateTime createdDate;
     private LocalDateTime lastModified;
+
+
+    public String getCreatorName(){
+        return (creator == null) ? null : creator.getUserName();
+    }
+    public void setCreatorName(){
+        this.creatorName = getCreatorName();
+    }
 
     @PrePersist
     void prePersist() {

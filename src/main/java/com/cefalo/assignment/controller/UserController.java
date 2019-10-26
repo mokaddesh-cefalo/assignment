@@ -20,7 +20,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity postUser(@RequestBody User user){
         ResponseEntity responseEntity = null;
-
+        System.out.println(user);
         try {
             User userCreated = userService.postUser(user);
             responseEntity = new ResponseEntity(userCreated, HttpStatus.CREATED);
