@@ -12,4 +12,5 @@ public interface StoryService {
     Optional<Story> getStoryById(Long storyId);
     Optional<Story> updateStoryById(Long storyId, Story newVersionOfStory) throws Exception;
     void deleteStoryById(Long storyId) throws Exception;
+    Story updateOldStoryByNewStory(Story olderVersionOfStory, Story newVersionOfStory) throws IllegalArgumentException, IllegalAccessException;
 }

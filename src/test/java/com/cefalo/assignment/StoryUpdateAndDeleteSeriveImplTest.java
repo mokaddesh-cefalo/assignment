@@ -1,14 +1,12 @@
 package com.cefalo.assignment;
 
 import com.cefalo.assignment.model.orm.Story;
-import com.cefalo.assignment.service.business.StoryUpdateAndDeleteSerive;
+import com.cefalo.assignment.service.business.StoryService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.lang.reflect.Field;
 
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
@@ -18,7 +16,7 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 public class StoryUpdateAndDeleteSeriveImplTest {
 
     @Autowired
-    StoryUpdateAndDeleteSerive storyUpdateAndDeleteSerive;
+    StoryService storyUpdateAndDeleteSerive;
 
 
 
