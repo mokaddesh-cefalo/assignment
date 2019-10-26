@@ -3,41 +3,35 @@ package com.cefalo.assignment.model.orm;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@NoArgsConstructor
+@Table(name = "User")
 @Data
-public class Story implements Serializable {
-
+@NoArgsConstructor
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(updatable = false)
     private Long id;
 
-    @JsonIgnore @Transient
-    private String error;
+    @Column(unique = true, nullable = false)
+    private String userName;
 
-    @ManyToOne @JoinColumn(name = "user_id", nullable = false)
-    User creator;
+    @Column(nullable = false)
+    private String password;
 
-    private String title;
-    private String body;
-    private String publishedDate;
-
-    public Story(String title, String body, String publishedDate){
-        this.title = title;
-        this.body = body;
-        this.publishedDate = publishedDate;
-    }
+    private Boolean active;
+    private String roles;
 
     @Column(updatable = false)
     private LocalDateTime createdDate;
     private LocalDateTime lastModified;
+
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    List<Story> stories;
 
     @PrePersist
     void prePersist() {
