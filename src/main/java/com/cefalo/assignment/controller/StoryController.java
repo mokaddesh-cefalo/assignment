@@ -52,9 +52,12 @@ public class StoryController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public List<Story> getAllStoryByPagination(@RequestParam(value = "pagenumber", defaultValue = "0") int pageNumber){
+    public List<Story> getAllStoryByPagination(
+            @RequestParam(value = "pagenumber", defaultValue = "${story.defaultPaginationPageNumber }") int pageNumber,
+            @RequestParam(value = "column", defaultValue = "${story.defaultPaginationColumnName}") String columnName
+    ){
         Pageable pageable = PageRequest.of(
-                (pageNumber < 0 ? 0 : pageNumber), articlePerPage, Sort.by("publishedDate").descending()
+                (pageNumber < 0 ? 0 : pageNumber), articlePerPage, Sort.by(columnName).descending()
         );
         return storyService.findAll(pageable);
     }
