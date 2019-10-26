@@ -7,4 +7,5 @@ import java.util.Optional;
 public interface UserService {
     User postUser(User user) throws Exception;
     Optional<User> findUserByUserName(String userName);
+    boolean existsUserByUserName(String userName);
 }

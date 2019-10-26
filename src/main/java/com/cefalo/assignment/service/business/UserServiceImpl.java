@@ -12,14 +12,19 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
+    public boolean existsUserByUserName(String userName){
+        return userRepository.existsUserByUserName(userName);
+    }
+
     @Override
     public User postUser(User user) throws Exception{
+        if(existsUserByUserName(user.getUserName())) throw new Exception("User Name already exists");
         return userRepository.save(user);
     }
 
     @Override
     public Optional<User> findUserByUserName(String userName){
-        return userRepository.findUserByUserName(userName);
+        return userRepository.findById(userName);
     }
 
 }

@@ -1,6 +1,8 @@
 package com.cefalo.assignment.model.orm;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Story implements Serializable {
 
     @Id
@@ -19,10 +22,11 @@ public class Story implements Serializable {
     @Column(updatable = false)
     private Long id;
 
-    @JsonIgnore @Transient
-    private String error;
+    @Transient
+    private String creatorName;
 
-    @ManyToOne @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne @JoinColumn(name = "user_name", nullable = false, updatable = false)
+    @JsonIgnore
     User creator;
 
     private String title;

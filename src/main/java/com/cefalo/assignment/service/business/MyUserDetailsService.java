@@ -63,7 +63,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
            @Override
            public boolean isEnabled() {
-               return user.getActive();
+               return true;
            }
        };
     }

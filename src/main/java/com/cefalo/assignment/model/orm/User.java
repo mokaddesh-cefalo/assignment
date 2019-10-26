@@ -1,6 +1,8 @@
 package com.cefalo.assignment.model.orm;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,18 +14,19 @@ import java.util.List;
 @Table(name = "User")
 @Data
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @Column(unique = true, nullable = false)
     private String userName;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
     private Boolean active;
+
+    @Column
     private String roles;
 
     @Column(updatable = false)
@@ -33,8 +36,13 @@ public class User {
     @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     List<Story> stories;
 
+    public User(String userName){
+        this.userName = userName;
+    }
+
     @PrePersist
     void prePersist() {
+        if(roles == null) roles = "ROLE_USER";
         createdDate = LocalDateTime.now();
     }
 
