@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +15,6 @@ import java.util.Optional;
 @Service
 public class StoryServiceImpl implements StoryService{
     @Autowired StoryRepository storyRepository;
-    @Autowired StoryUpdateAndDeleteSerive storyUpdateAndDeleteSerive;
 
     @Override
     public Optional<Story> postStoryObject(Story story) {
@@ -35,11 +35,33 @@ public class StoryServiceImpl implements StoryService{
 
     @Override
     public Optional<Story> updateStoryById(Long storyId, Story newVersionOfStory) throws Exception{
-        return storyUpdateAndDeleteSerive.handleStoryUpdate(storyId, newVersionOfStory) ;
+        newVersionOfStory.setId(storyId);
+        Optional<Story> olderVersionOfStory = storyRepository.findById(storyId);
+
+        if(olderVersionOfStory.isPresent() == false) {
+            return olderVersionOfStory;
+        }else {
+            newVersionOfStory = updateOldStoryByNewStory(olderVersionOfStory.get(), newVersionOfStory);
+            return Optional.ofNullable(storyRepository.save(newVersionOfStory));
+        }
+    }
+
+    @Override
+    public Story updateOldStoryByNewStory(Story olderVersionOfStory, Story newVersionOfStory) throws IllegalArgumentException, IllegalAccessException {
+        for(Field field: Story.class.getDeclaredFields()) {
+            if (Modifier.isPrivate(field.getModifiers()))  {
+                field.setAccessible(true);
+            }
+            if(field.get(newVersionOfStory) == null) {
+                field.set(newVersionOfStory, field.get(olderVersionOfStory));
+            }
+        }
+        return newVersionOfStory;
     }
 
     @Override
     public void deleteStoryById(Long storyId) throws Exception{
-        storyUpdateAndDeleteSerive.handleStoryDelete(storyId);
+        Optional<Story> story = storyRepository.findById(storyId);
+        if(story.isPresent()) storyRepository.delete(story.get());
     }
 }
