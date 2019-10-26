@@ -5,6 +5,7 @@ import com.cefalo.assignment.model.orm.User;
 import com.cefalo.assignment.service.orm.StoryRepository;
 import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -93,5 +94,11 @@ public class StoryServiceImpl implements StoryService{
 
         if(getLoggedInUserName().equals(storyCreatorName)) storyRepository.delete(story.get());
         return (getLoggedInUserName().equals(storyCreatorName)) ? 200 : 401;
+    }
+
+
+    @Override
+    public List<Story> findAll(Pageable pageable){
+        return storyRepository.findAll(pageable).toList();
     }
 }

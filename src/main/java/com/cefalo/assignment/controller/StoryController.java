@@ -4,6 +4,7 @@ import com.cefalo.assignment.model.orm.Story;
 import com.cefalo.assignment.service.business.StoryService;
 import com.cefalo.assignment.service.orm.StoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -27,6 +28,9 @@ public class StoryController {
     @Autowired
     StoryService storyService;
 
+    @Value("${story.articlePerPage}")
+    int articlePerPage;
+
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
@@ -43,18 +47,16 @@ public class StoryController {
         return storyService.getAllStory();
     }
 
-    @Autowired
-    StoryRepository storyRepository;
-
     @GetMapping(value = "/pagination",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public List<Story> getAllStoryByPagination(@RequestParam(value = "pagenumber", defaultValue = "0") int pageNumber){
-        int articlePerPage = 1;
-        Pageable pageable = PageRequest.of((pageNumber < 0 ? 0 : pageNumber), articlePerPage, Sort.by("publishedDate").descending());
-        return storyRepository.findAll(pageable).toList();
+        Pageable pageable = PageRequest.of(
+                (pageNumber < 0 ? 0 : pageNumber), articlePerPage, Sort.by("publishedDate").descending()
+        );
+        return storyService.findAll(pageable);
     }
 
     @GetMapping("/{storyId}")
