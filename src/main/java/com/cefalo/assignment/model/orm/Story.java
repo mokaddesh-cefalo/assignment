@@ -54,6 +54,7 @@ public class Story implements Serializable {
     @PrePersist
     void prePersist() {
         createdDate = LocalDateTime.now();
+        lastModified = null;
     }
 
     @PreUpdate

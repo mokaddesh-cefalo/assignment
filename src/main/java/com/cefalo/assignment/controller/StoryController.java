@@ -28,25 +28,23 @@ public class StoryController {
     @Autowired
     StoryService storyService;
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    @ResponseBody
-    @ResponseStatus(HttpStatus.CREATED)
-    public Story postStoryObject(@RequestBody Story story){
-        return storyService.postStoryObject(story).get();
+    @PostMapping(consumes = MediaType.ALL_VALUE, produces = MediaType.ALL_VALUE)
+    public Story postStoryObject(@RequestBody Story story, HttpServletResponse response){
+        Optional<Story> newStory = storyService.postStoryObject(story);
+        response.setStatus( (newStory.isPresent() ?
+                HttpStatus.CREATED.value() : HttpStatus.UNPROCESSABLE_ENTITY.value())
+        );
+        return (newStory.isPresent()) ? newStory.get() : null;
     }
 
-    @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(consumes = MediaType.ALL_VALUE, produces = MediaType.ALL_VALUE)
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public List<Story> getAllStory(){
         return storyService.getAllStory();
     }
 
-    @GetMapping(value = "/pagination",
-            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value = "/pagination", consumes = MediaType.ALL_VALUE, produces = MediaType.ALL_VALUE)
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public List<Story> getAllStoryByPagination(
@@ -63,9 +61,7 @@ public class StoryController {
                 : new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping(value = "/{storyId}",
-            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PostMapping(value = "/{storyId}", consumes = MediaType.ALL_VALUE, produces = MediaType.ALL_VALUE)
     public ResponseEntity updateStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "storyId") Long storyId){
         ResponseEntity responseEntity = null;
         try {
