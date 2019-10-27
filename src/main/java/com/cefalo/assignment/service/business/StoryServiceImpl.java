@@ -6,7 +6,9 @@ import com.cefalo.assignment.service.orm.StoryRepository;
 import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,12 @@ public class StoryServiceImpl implements StoryService{
 
     @Value("${story.replaceFieldsOnUpdate}")
     String replaceFieldsOnUpdate;
+
+    @Value("${story.articlePerPage}")
+    int articlePerPage;
+
+    @Value("${story.fieldsNameToUseInPagination}")
+    String fieldsNameToUseInPagination;
 
     String getLoggedInUserName(){
         return SecurityContextHolder.getContext().getAuthentication().getName();
@@ -83,11 +91,11 @@ public class StoryServiceImpl implements StoryService{
     /**Using java reflection API*/
     @Override
     public Story updateOldStoryByNewStory(Story olderVersionOfStory, Story newVersionOfStory) throws IllegalArgumentException, IllegalAccessException {
-        System.out.println("Here");
         HashSet<String> setOfFieldsToReplace = new HashSet<>();
 
-        setOfFieldsToReplace.addAll(Arrays.stream(replaceFieldsOnUpdate.split(","))
-                .collect(Collectors.toList()));
+        setOfFieldsToReplace.addAll(
+                makeStringToStringList(replaceFieldsOnUpdate, ",")
+        );
 
         for(Field field: Story.class.getDeclaredFields()) {
 
@@ -115,9 +123,29 @@ public class StoryServiceImpl implements StoryService{
         return (getLoggedInUserName().equals(storyCreatorName)) ? deleteOnSuccess : deleteNotAuthorizedStatusCode;
     }
 
+    @Value("${story.defaultPaginationColumnName}")
+    String defaultPaginationColumnName;
 
     @Override
-    public List<Story> findAll(Pageable pageable){
+    public List<Story> findAll(int pageNumber, String columnName){
+        HashSet<String> columnNameForPagination = new HashSet<>();
+
+        columnNameForPagination.addAll(
+                makeStringToStringList(fieldsNameToUseInPagination, ",")
+        );
+
+        if(!columnNameForPagination.contains(columnName)){
+            columnName = defaultPaginationColumnName;
+        }
+        System.out.println(columnName);
+        Pageable pageable = PageRequest.of(
+                (pageNumber < 0 ? 0 : pageNumber), articlePerPage, Sort.by(columnName).ascending()
+        );
         return storyRepository.findAll(pageable).toList();
+    }
+
+    List<String> makeStringToStringList(String mainString, String seperator){
+        return Arrays.stream(mainString.split(seperator))
+                .collect(Collectors.toList());
     }
 }

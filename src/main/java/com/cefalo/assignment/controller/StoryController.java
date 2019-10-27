@@ -28,9 +28,6 @@ public class StoryController {
     @Autowired
     StoryService storyService;
 
-    @Value("${story.articlePerPage}")
-    int articlePerPage;
-
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
@@ -53,13 +50,10 @@ public class StoryController {
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public List<Story> getAllStoryByPagination(
-            @RequestParam(value = "pagenumber", defaultValue = "${story.defaultPaginationPageNumber }") int pageNumber,
-            @RequestParam(value = "column", defaultValue = "${story.defaultPaginationColumnName}") String columnName
+            @RequestParam(value = "pagenumber", defaultValue = "${story.defaultPaginationPageNumber}") int pageNumber,
+            @RequestParam(value = "columnName", defaultValue = "${story.defaultPaginationColumnName}") String columnName
     ){
-        Pageable pageable = PageRequest.of(
-                (pageNumber < 0 ? 0 : pageNumber), articlePerPage, Sort.by(columnName).descending()
-        );
-        return storyService.findAll(pageable);
+        return storyService.findAll(pageNumber, columnName);
     }
 
     @GetMapping("/{storyId}")

@@ -13,6 +13,6 @@ public interface StoryService {
     Optional<Story> getStoryById(Long storyId);
     Optional<Story> updateStoryById(Long storyId, Story newVersionOfStory) throws Exception;
     long deleteStoryById(Long storyId);
-    List<Story> findAll(Pageable pageable);
+    List<Story> findAll(int pageNumber, String columnName);
     Story updateOldStoryByNewStory(Story olderVersionOfStory, Story newVersionOfStory) throws IllegalArgumentException, IllegalAccessException;
 }
