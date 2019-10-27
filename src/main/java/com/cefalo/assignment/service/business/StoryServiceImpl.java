@@ -1,10 +1,12 @@
 package com.cefalo.assignment.service.business;
 
+import com.cefalo.assignment.model.business.StoryPropertiesConfig;
 import com.cefalo.assignment.model.orm.Story;
 import com.cefalo.assignment.model.orm.User;
 import com.cefalo.assignment.service.orm.StoryRepository;
 import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,23 +23,9 @@ import java.util.stream.Collectors;
 public class StoryServiceImpl implements StoryService{
     @Autowired StoryRepository storyRepository;
 
-    @Value("${story.deleteNotFoundStatusCode}")
-    int deleteNotFoundStatusCode;
-
-    @Value("${story.deleteNotAuthorizedStatusCode}")
-    int deleteNotAuthorizedStatusCode;
-
-    @Value("${story.deleteOnSuccess}")
-    int deleteOnSuccess;
-
-    @Value("${story.replaceFieldsOnUpdate}")
-    String replaceFieldsOnUpdate;
-
-    @Value("${story.articlePerPage}")
-    int articlePerPage;
-
-    @Value("${story.fieldsNameToUseInPagination}")
-    String fieldsNameToUseInPagination;
+    @Autowired
+    @Qualifier("storyPropertiesConfig")
+    StoryPropertiesConfig storyPropertiesConfig;
 
     String getLoggedInUserName(){
         return SecurityContextHolder.getContext().getAuthentication().getName();
@@ -91,15 +79,11 @@ public class StoryServiceImpl implements StoryService{
     /**Using java reflection API*/
     @Override
     public Story updateOldStoryByNewStory(Story olderVersionOfStory, Story newVersionOfStory) throws IllegalArgumentException, IllegalAccessException {
-        HashSet<String> setOfFieldsToReplace = new HashSet<>();
-
-        setOfFieldsToReplace.addAll(
-                makeStringToStringList(replaceFieldsOnUpdate, ",")
-        );
+        HashSet<String> setOfFieldsToReplace = storyPropertiesConfig.getSetOfReplaceFieldsOnUpdate();
 
         for(Field field: Story.class.getDeclaredFields()) {
 
-            if (setOfFieldsToReplace.contains(field.getName()) == false) continue;
+            if (!setOfFieldsToReplace.contains(field.getName())) continue;
 
             if (Modifier.isPrivate(field.getModifiers()))  {
                 field.setAccessible(true);
@@ -115,31 +99,26 @@ public class StoryServiceImpl implements StoryService{
     @Override
     public long deleteStoryById(Long storyId) {
         Optional<Story> story = storyRepository.findById(storyId);
-        if(!story.isPresent()) return deleteNotFoundStatusCode;
+        if(!story.isPresent()) return storyPropertiesConfig.getDeleteNotFoundStatusCode();
 
         String storyCreatorName = story.get().getCreatorName();
 
         if(getLoggedInUserName().equals(storyCreatorName)) storyRepository.delete(story.get());
-        return (getLoggedInUserName().equals(storyCreatorName)) ? deleteOnSuccess : deleteNotAuthorizedStatusCode;
+        return (getLoggedInUserName().equals(storyCreatorName)) ? storyPropertiesConfig.getDeleteOnSuccess()
+                : storyPropertiesConfig.getDeleteNotAuthorizedStatusCode();
     }
 
-    @Value("${story.defaultPaginationColumnName}")
-    String defaultPaginationColumnName;
 
     @Override
     public List<Story> findAll(int pageNumber, String columnName){
-        HashSet<String> columnNameForPagination = new HashSet<>();
-
-        columnNameForPagination.addAll(
-                makeStringToStringList(fieldsNameToUseInPagination, ",")
-        );
+        HashSet<String> columnNameForPagination = storyPropertiesConfig.getSetOfFieldsNameToUseInPagination();
 
         if(!columnNameForPagination.contains(columnName)){
-            columnName = defaultPaginationColumnName;
+            columnName = storyPropertiesConfig.getDefaultPaginationColumnName();
         }
-        System.out.println(columnName);
+
         Pageable pageable = PageRequest.of(
-                (pageNumber < 0 ? 0 : pageNumber), articlePerPage, Sort.by(columnName).ascending()
+                (pageNumber < 0 ? 0 : pageNumber), storyPropertiesConfig.getArticlePerPage(), Sort.by(columnName).ascending()
         );
         return storyRepository.findAll(pageable).toList();
     }

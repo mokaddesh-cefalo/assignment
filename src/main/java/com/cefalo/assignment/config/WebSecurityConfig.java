@@ -1,4 +1,4 @@
-package com.cefalo.assignment;
+package com.cefalo.assignment.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
