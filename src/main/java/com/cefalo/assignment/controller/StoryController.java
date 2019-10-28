@@ -5,6 +5,7 @@ import com.cefalo.assignment.service.business.StoryService;
 import com.cefalo.assignment.service.orm.StoryRepository;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
@@ -65,7 +66,7 @@ public class StoryController {
 
     @ApiOperation(response = Story.class, value = "Create a new story attached in request body",
             notes = "Provide 'Content-Type' headers 'application/json' for story in json format<br> " +
-                    "'application/xml' for xml format <br>'")
+                    "'application/xml' for xml format <br>',")
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity postStoryObject(@RequestBody Story story){
         ResponseEntity responseEntity = null;
