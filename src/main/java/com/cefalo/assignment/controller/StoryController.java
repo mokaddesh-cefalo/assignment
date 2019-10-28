@@ -2,6 +2,8 @@ package com.cefalo.assignment.controller;
 
 import com.cefalo.assignment.model.orm.Story;
 import com.cefalo.assignment.service.business.StoryService;
+import com.cefalo.assignment.utils.ExceptionHandlerUtil;
+import com.cefalo.assignment.utils.ResponseEntityCreation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +21,12 @@ public class StoryController  {
     @Autowired
     StoryService storyService;
 
+    @Autowired
+    ExceptionHandlerUtil exceptionHandlerUtil;
+
+    @Autowired
+    ResponseEntityCreation responseEntityCreation;
+
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
@@ -30,8 +38,8 @@ public class StoryController  {
     public ResponseEntity getStoryById(@PathVariable(value = "storyId") Long storyId){
         Optional<Story> fetchedStory = storyService.getStoryById(storyId);
 
-        return fetchedStory.isPresent() ? makeResponseEntity(fetchedStory.get(), HttpStatus.OK)
-                : makeResponseEntity(null, HttpStatus.NOT_FOUND);
+        return responseEntityCreation
+                .makeResponseEntity(fetchedStory, HttpStatus.OK, HttpStatus.NOT_FOUND);
     }
 
     @GetMapping(value = "/pagination", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -47,9 +55,11 @@ public class StoryController  {
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity postStoryObject(@RequestBody Story story){
         try {
-            return makeResponseEntity(storyService.saveNewStoryObject(story), HttpStatus.CREATED);
+            return responseEntityCreation
+                    .makeResponseEntity(storyService.saveNewStoryObject(story), HttpStatus.CREATED);
         }catch (Exception e){
-           return makeResponseEntity(getRootThrowableMessage(e), HttpStatus.UNPROCESSABLE_ENTITY);
+           return responseEntityCreation
+            .makeResponseEntity(exceptionHandlerUtil.getRootThrowableMessage(e), HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
 
@@ -57,10 +67,12 @@ public class StoryController  {
     public ResponseEntity updateStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "storyId") Long storyId){
         try {
             Optional<Story> fetchedStory = storyService.checkAuthorityThenUpdateStoryById(storyId, newVersionOfStory);
-            return fetchedStory.isPresent() ? makeResponseEntity(fetchedStory.get(), HttpStatus.OK)
-                    : makeResponseEntity(null, HttpStatus.NOT_FOUND);
+            return responseEntityCreation
+                    .makeResponseEntity(fetchedStory, HttpStatus.OK, HttpStatus.NOT_FOUND);
+
         }catch (Exception e){
-            return makeResponseEntity(e.getMessage(), HttpStatus.UNAUTHORIZED);
+            return responseEntityCreation
+                    .makeResponseEntity(e.getMessage(), HttpStatus.UNAUTHORIZED);
         }
     }
 
@@ -69,14 +81,4 @@ public class StoryController  {
         response.setStatus(storyService.checkAuthorityThenDeleteStoryById(storyId));
     }
 
-    private String getRootThrowableMessage(Throwable e) {
-        while (e.getCause() != null){
-            e = e.getCause();
-        }
-        return e.getMessage();
-    }
-
-    public <T> ResponseEntity makeResponseEntity(T t, HttpStatus httpStatus){
-        return new ResponseEntity(t, httpStatus);
-    }
 }

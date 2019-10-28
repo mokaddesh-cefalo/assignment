@@ -1,16 +1,15 @@
 package com.cefalo.assignment.controller;
 
 
-import com.cefalo.assignment.model.orm.Story;
 import com.cefalo.assignment.model.orm.User;
 import com.cefalo.assignment.service.business.UserService;
-import org.hibernate.validator.constraints.URL;
+import com.cefalo.assignment.utils.ExceptionHandlerUtil;
+import com.cefalo.assignment.utils.ResponseEntityCreation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,41 +19,34 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    ExceptionHandlerUtil exceptionHandlerUtil;
+
+    @Autowired
+    ResponseEntityCreation responseEntityCreation;
+
     @PostMapping
     public ResponseEntity postUser(@RequestBody User user){
-        ResponseEntity responseEntity = null;
-
         try {
-            User userCreated = userService.postUser(user);
-            responseEntity = new ResponseEntity<User>(userCreated, HttpStatus.CREATED);
+            return responseEntityCreation
+                    .makeResponseEntity(userService.postUser(user), HttpStatus.CREATED);
         }catch (Exception e){
-            responseEntity = new ResponseEntity<String>(getRootThrowable(e).getMessage(), HttpStatus.BAD_REQUEST);
-        }finally {
-            return responseEntity;
+            return responseEntityCreation
+                    .makeResponseEntity(exceptionHandlerUtil.getRootThrowableMessage(e), HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/{userName}")
     public ResponseEntity getUser(@PathVariable String userName){
-        Optional<User> user = userService.findUserByUserName(userName);
-
-        return  user.isPresent() ? new ResponseEntity<User>(user.get(), HttpStatus.OK)
-                : new ResponseEntity(HttpStatus.NOT_FOUND);
+        return  responseEntityCreation
+                .makeResponseEntity(userService.findUserByUserName(userName), HttpStatus.OK, HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/{userName}/stories")
     public ResponseEntity getUserStories(@PathVariable String userName){
         Optional<User> user = userService.findUserByUserName(userName);
-
-        return  (user.isPresent()) ? new ResponseEntity<List<Story>>(user.get().getStories(), HttpStatus.OK)
-                : new ResponseEntity(HttpStatus.NOT_FOUND);
-    }
-
-    private Throwable getRootThrowable(Throwable e) {
-        while (e.getCause() != null){
-            e = e.getCause();
-        }
-        return e;
+        return responseEntityCreation
+                .makeResponseEntityOfStoryListFromUser(user, HttpStatus.OK, HttpStatus.NOT_FOUND);
     }
 
 }
