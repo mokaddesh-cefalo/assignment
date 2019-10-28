@@ -1,23 +1,19 @@
 ###assignment
+
 For quick documentation use http://localhost:8080/swagger-ui.html
 
 ###Make sure there database properties for the following are true
 
     spring.jpa.hibernate.ddl-auto = update //can changes it according to use case
-    
     spring.datasource.url = jdbc:mysql://${MYSQL_HOST:localhost}:3306/assignment
-    
     spring.datasource.username = root{username}
-    
     spring.datasource.password = shovon{password}
     
 
 ###Security
 
     *Anyone can view any Story
-    
     *Only a logged in user can create new stories.
-    
     *A logged in user can delete/update only those stories, which were created by himself/herself.
 
 ###Story Class Information
@@ -25,15 +21,10 @@ For quick documentation use http://localhost:8080/swagger-ui.html
 ##Description:	
 
     To Add a story send post request to ‘/api/stories’
-    
     To get all stories send get request to ‘/api/stories’
-    
     To get a story by ID send get request to ‘/api/stoies/{storyId}’
-    
     To update a story by ID send post request to ‘/api/stoies/{storyId}’
-    
     To Delete a story by ID send delete request to ‘/api/stoies/{storyId}’
-    
     To get story using pagination send get request to ‘/api/stories/pagination’
     
 
@@ -85,7 +76,6 @@ For quick documentation use http://localhost:8080/swagger-ui.html
 #Description: Provide ‘Accept’ headers 
 
             ‘Accept = application/json’ for json response
-            
             ‘Accept = application/xml’ for xml type response
             
             
@@ -96,35 +86,24 @@ For quick documentation use http://localhost:8080/swagger-ui.html
 #Description: Provide ‘Accept & Content-Type’ headers 
 
             ‘Accept = application/json’ for json response
-            
             ‘Accept = application/xml’ for xml type response
-            
             ‘Content-Type = application/json’ for json type request body
-            
             ‘Content-Type = application/xml’ for xml type request body     
 
 #Demo Story format to send as request body when content type is xml
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    
+    <?xml version="1.0" encoding="UTF-8">
     <Story>
-    
         <body>string</body>
-        
         <publishedDate>string</publishedDate>
-        
         <title>string</title>
-        
     </Story>
 
 #Demo Story format to send as request body when content type is json
 
     {
-    
-      "body": "string",
-      
+      "body": "string", 
       "publishedDate": "2016-12-28T09:56:17.4728502",
-      
       "title": "string"
     }
 
@@ -135,9 +114,8 @@ For quick documentation use http://localhost:8080/swagger-ui.html
 #Description: Provide ‘Accept’ headers 
 
             ‘Accept = application/json’ for json response
-            
             ‘Accept = application/xml’ for xml type response
- 
+            
 ##Target: Update story attached in request body  
 
 #Post URL: /api/stories/{storyId}
@@ -145,7 +123,6 @@ For quick documentation use http://localhost:8080/swagger-ui.html
 #Description: 
 
     *Update a story attached in request body and id will be fetched from url. Only creator of the story can update it.
-    
     *Use information provided in Post of '/api/stories/'
 
 ##Target: Delete story Id
@@ -164,27 +141,20 @@ For quick documentation use http://localhost:8080/swagger-ui.html
 #Query Parameter:
 
     *columnName, Type: string, Default value : publishedDate
-    
     *pagenumber, Type: integer($int32), Default value : 0
     
 #Description:
 
-    *Provide ‘Accept’ headers application/json for json response, application/xml for xml type response
-    
+    *Provide ‘Accept’ headers application/json for json response, application/xml for xml type response  
     *‘pagenumber’ for number of page in pagination, default value is ‘0’
-    
     *‘columnName’ for name of Story table column which will be for sorting, default value is ‘publishedDate’
     
-
-
 ###User Class Information
 
 #Description:
 
     To Add a User send post request to ‘/api/users’
-    
     To get all stories by user send get request to ‘/api/users/{userName}/stories’
-    
     To get a User by UserName send get request to ‘/api/users/{userName}’
 
 #active	boolean
