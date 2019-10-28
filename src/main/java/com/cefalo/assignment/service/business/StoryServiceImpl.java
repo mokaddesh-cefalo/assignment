@@ -99,12 +99,18 @@ public class StoryServiceImpl implements StoryService{
     @Override
     public int checkAuthorityThenDeleteStoryById(Long storyId) {
         Optional<Story> story = storyRepository.findById(storyId);
-        if(!story.isPresent()) return HttpStatus.NOT_FOUND.value();// storyProperties.getDeleteNotFoundStatusCode();
+
+        if(!story.isPresent()) {
+            return HttpStatus.NOT_FOUND.value();// storyProperties.getDeleteNotFoundStatusCode();
+        }
 
         String storyCreatorName = story.get().getCreatorName();
 
-        if(getLoggedInUserName().equals(storyCreatorName)) storyRepository.delete(story.get());
-        return (getLoggedInUserName().equals(storyCreatorName)) ? HttpStatus.OK.value() : HttpStatus.UNAUTHORIZED.value();
+        if(getLoggedInUserName().equals(storyCreatorName)) {
+            storyRepository.delete(story.get());
+            return HttpStatus.OK.value();
+        }
+        return HttpStatus.UNAUTHORIZED.value();
     }
 
 
