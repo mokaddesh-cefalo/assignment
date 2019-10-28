@@ -4,7 +4,6 @@ import com.cefalo.assignment.controller.StoryController;
 import com.cefalo.assignment.model.orm.Story;
 import com.cefalo.assignment.service.business.StoryService;
 import com.google.gson.Gson;
-import net.bytebuddy.asm.Advice;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -38,6 +36,6 @@ public class StoryControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
 
-        verify(storyService, times(1)).postStoryObject(demoStory);
+        verify(storyService, times(1)).saveNewStoryObject(demoStory);
     }
 }

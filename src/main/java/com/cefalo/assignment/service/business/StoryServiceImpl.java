@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +31,8 @@ public class StoryServiceImpl implements StoryService{
     }
 
     @Override
-    public Story postStoryObject(Story story) throws Exception {
-        if(story.getId() != null) throw new Exception("Request Body Should not contain 'ID' file!");
+    public Story saveNewStoryObject(Story story) throws Exception {
+        if(story.getId() != null) throw new Exception("Request Body Should not contain 'ID' field!");
 
         /** setting current logged in user as creator */
         /**TODO assign on prepersist*/
@@ -57,11 +58,11 @@ public class StoryServiceImpl implements StoryService{
     }
 
     @Override
-    public Optional<Story> updateStoryById(Long storyId, Story newVersionOfStory) throws Exception{
+    public Optional<Story> checkAuthorityThenUpdateStoryById(Long storyId, Story newVersionOfStory) throws Exception{
         newVersionOfStory.setId(storyId);
         Optional<Story> olderVersionOfStory = storyRepository.findById(storyId);
 
-        if(olderVersionOfStory.isPresent() == false) {
+        if(!olderVersionOfStory.isPresent()) {
             return olderVersionOfStory;
         }
 
@@ -96,15 +97,14 @@ public class StoryServiceImpl implements StoryService{
     }
 
     @Override
-    public long deleteStoryById(Long storyId) {
+    public int checkAuthorityThenDeleteStoryById(Long storyId) {
         Optional<Story> story = storyRepository.findById(storyId);
-        if(!story.isPresent()) return storyProperties.getDeleteNotFoundStatusCode();
+        if(!story.isPresent()) return HttpStatus.NOT_FOUND.value();// storyProperties.getDeleteNotFoundStatusCode();
 
         String storyCreatorName = story.get().getCreatorName();
 
         if(getLoggedInUserName().equals(storyCreatorName)) storyRepository.delete(story.get());
-        return (getLoggedInUserName().equals(storyCreatorName)) ? storyProperties.getDeleteOnSuccess()
-                : storyProperties.getDeleteNotAuthorizedStatusCode();
+        return (getLoggedInUserName().equals(storyCreatorName)) ? HttpStatus.OK.value() : HttpStatus.UNAUTHORIZED.value();
     }
 
 
