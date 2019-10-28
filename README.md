@@ -45,6 +45,7 @@ For quick documentation use http://localhost:8080/swagger-ui.html
 
 #publishedDate	string 
     Info = (publishedDate should be a date converted into string will not check if it actually a date)
+    DateFormat = (YEAR-MONTH-DAY)T(HOUR:MINUTE:SECOND.MILISECOND) 2016-12-28T09:56:17.4728502
 
 #title	string 
     Info = (Title of the story should keep as small as possible, it can be null)
@@ -77,7 +78,7 @@ For quick documentation use http://localhost:8080/swagger-ui.html
 #Demo Story format to send as request body when content type is json
     {
       "body": "string",
-      "publishedDate": "string",
+      "publishedDate": "2016-12-28T09:56:17.4728502",
       "title": "string"
     }
 
