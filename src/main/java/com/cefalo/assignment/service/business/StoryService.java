@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface StoryService {
-    Optional<Story> postStoryObject(Story story);
+    Story postStoryObject(Story story) throws Exception;
     List<Story> getAllStory();
     Optional<Story> getStoryById(Long storyId);
     Optional<Story> updateStoryById(Long storyId, Story newVersionOfStory) throws Exception;

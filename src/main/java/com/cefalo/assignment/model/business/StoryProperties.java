@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @Data
 @PropertySource("classpath:application.properties")
 @ConfigurationProperties(prefix = "story")
-public class StoryPropertiesConfig {
+public class StoryProperties {
     private int articlePerPage;
     private int defaultPaginationPageNumber;
     private int deleteNotFoundStatusCode;
@@ -27,7 +27,7 @@ public class StoryPropertiesConfig {
     private HashSet<String> setOfReplaceFieldsOnUpdate;
     private HashSet<String> setOfFieldsNameToUseInPagination;
 
-    public StoryPropertiesConfig(){
+    public StoryProperties(){
     }
 
     void init(){

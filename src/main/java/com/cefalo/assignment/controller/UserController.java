@@ -1,13 +1,16 @@
 package com.cefalo.assignment.controller;
 
 
+import com.cefalo.assignment.model.orm.Story;
 import com.cefalo.assignment.model.orm.User;
 import com.cefalo.assignment.service.business.UserService;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,28 +23,30 @@ public class UserController {
     @PostMapping
     public ResponseEntity postUser(@RequestBody User user){
         ResponseEntity responseEntity = null;
-        System.out.println(user);
+
         try {
             User userCreated = userService.postUser(user);
-            responseEntity = new ResponseEntity(userCreated, HttpStatus.CREATED);
+            responseEntity = new ResponseEntity<User>(userCreated, HttpStatus.CREATED);
         }catch (Exception e){
-            responseEntity = new ResponseEntity(getRootThrowable(e).getMessage(), HttpStatus.BAD_REQUEST);
+            responseEntity = new ResponseEntity<String>(getRootThrowable(e).getMessage(), HttpStatus.BAD_REQUEST);
         }finally {
             return responseEntity;
         }
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity getUser(@PathVariable String userId){
-        Optional<User> user = userService.findUserByUserName(userId);
-        return  (user.isPresent()) ? new ResponseEntity(user.get(), HttpStatus.OK)
+    @GetMapping("/{userName}")
+    public ResponseEntity getUser(@PathVariable String userName){
+        Optional<User> user = userService.findUserByUserName(userName);
+
+        return  user.isPresent() ? new ResponseEntity<User>(user.get(), HttpStatus.OK)
                 : new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/{userId}/stories")
-    public ResponseEntity getUserStories(@PathVariable String userId){
-        Optional<User> user = userService.findUserByUserName(userId);
-        return  (user.isPresent()) ? new ResponseEntity(user.get().getStories(), HttpStatus.OK)
+    @GetMapping("/{userName}/stories")
+    public ResponseEntity getUserStories(@PathVariable String userName){
+        Optional<User> user = userService.findUserByUserName(userName);
+
+        return  (user.isPresent()) ? new ResponseEntity<List<Story>>(user.get().getStories(), HttpStatus.OK)
                 : new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 

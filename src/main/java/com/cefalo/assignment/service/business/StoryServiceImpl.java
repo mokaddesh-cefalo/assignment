@@ -1,13 +1,11 @@
 package com.cefalo.assignment.service.business;
 
-import com.cefalo.assignment.model.business.StoryPropertiesConfig;
+import com.cefalo.assignment.model.business.StoryProperties;
 import com.cefalo.assignment.model.orm.Story;
 import com.cefalo.assignment.model.orm.User;
 import com.cefalo.assignment.service.orm.StoryRepository;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -24,20 +22,21 @@ public class StoryServiceImpl implements StoryService{
     @Autowired StoryRepository storyRepository;
 
     @Autowired
-    @Qualifier("storyPropertiesConfig")
-    StoryPropertiesConfig storyPropertiesConfig;
+    @Qualifier("storyProperties")
+    StoryProperties storyProperties;
 
     String getLoggedInUserName(){
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
     @Override
-    public Optional<Story> postStoryObject(Story story) {
-        if(story.getId() != null) return Optional.empty();
+    public Story postStoryObject(Story story) throws Exception {
+        if(story.getId() != null) throw new Exception("Request Body Should not contain 'ID' file!");
 
         /** setting current logged in user as creator */
+        /**TODO assign on prepersist*/
         story.setCreator(new User( getLoggedInUserName() ));
-        return Optional.ofNullable(storyRepository.save(story));
+        return storyRepository.save(story);
     }
 
     @Override
@@ -79,7 +78,7 @@ public class StoryServiceImpl implements StoryService{
     /**Using java reflection API*/
     @Override
     public Story updateOldStoryByNewStory(Story olderVersionOfStory, Story newVersionOfStory) throws IllegalArgumentException, IllegalAccessException {
-        HashSet<String> setOfFieldsToReplace = storyPropertiesConfig.getSetOfReplaceFieldsOnUpdate();
+        HashSet<String> setOfFieldsToReplace = storyProperties.getSetOfReplaceFieldsOnUpdate();
 
         for(Field field: Story.class.getDeclaredFields()) {
 
@@ -99,26 +98,26 @@ public class StoryServiceImpl implements StoryService{
     @Override
     public long deleteStoryById(Long storyId) {
         Optional<Story> story = storyRepository.findById(storyId);
-        if(!story.isPresent()) return storyPropertiesConfig.getDeleteNotFoundStatusCode();
+        if(!story.isPresent()) return storyProperties.getDeleteNotFoundStatusCode();
 
         String storyCreatorName = story.get().getCreatorName();
 
         if(getLoggedInUserName().equals(storyCreatorName)) storyRepository.delete(story.get());
-        return (getLoggedInUserName().equals(storyCreatorName)) ? storyPropertiesConfig.getDeleteOnSuccess()
-                : storyPropertiesConfig.getDeleteNotAuthorizedStatusCode();
+        return (getLoggedInUserName().equals(storyCreatorName)) ? storyProperties.getDeleteOnSuccess()
+                : storyProperties.getDeleteNotAuthorizedStatusCode();
     }
 
 
     @Override
     public List<Story> findAll(int pageNumber, String columnName){
-        HashSet<String> columnNameForPagination = storyPropertiesConfig.getSetOfFieldsNameToUseInPagination();
+        HashSet<String> columnNameForPagination = storyProperties.getSetOfFieldsNameToUseInPagination();
 
         if(!columnNameForPagination.contains(columnName)){
-            columnName = storyPropertiesConfig.getDefaultPaginationColumnName();
+            columnName = storyProperties.getDefaultPaginationColumnName();
         }
 
         Pageable pageable = PageRequest.of(
-                (pageNumber < 0 ? 0 : pageNumber), storyPropertiesConfig.getArticlePerPage(), Sort.by(columnName).ascending()
+                (pageNumber < 0 ? 0 : pageNumber), storyProperties.getArticlePerPage(), Sort.by(columnName).ascending()
         );
         return storyRepository.findAll(pageable).toList();
     }
