@@ -1,5 +1,6 @@
 ###assignment
 
+Starting URL: http://localhost:8080
 For quick documentation use http://localhost:8080/swagger-ui.html
 
 ###Make sure there database properties for the following are true
