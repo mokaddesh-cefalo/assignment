@@ -157,6 +157,10 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
     To get all stories by user send get request to ‘/api/users/{userName}/stories’
     To get a User by UserName send get request to ‘/api/users/{userName}’
 
+#userName	string
+
+    Info: Should be unique, this will be used as 'ID'        
+
 #active	boolean
 
 #createdDate	string($date-time)
@@ -181,10 +185,6 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
 #stories	[...]
 
     Info: List of stories created by User
-
-#userName	string
-
-    Info: Should be unique         
 
 #Default User format to send as request body when content type is json to create a new user
 

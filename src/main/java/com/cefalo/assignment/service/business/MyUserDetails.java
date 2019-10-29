@@ -21,6 +21,7 @@ public class MyUserDetails implements UserDetails {
     public MyUserDetails(User user){
         userName = user.getUserName();
         password = user.getPassword();
+
         grantedAuthorities = Arrays.stream(user.getRoles().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());

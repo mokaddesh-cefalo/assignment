@@ -21,7 +21,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
 
-    @ApiModelProperty(notes = "Should be unique")
+    @ApiModelProperty(notes = "Should be unique and will be used as 'ID' for user table")
     @Id
     @Column(unique = true, nullable = false)
     private String userName;

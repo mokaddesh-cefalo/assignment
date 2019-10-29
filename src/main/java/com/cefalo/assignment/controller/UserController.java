@@ -15,15 +15,17 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
+    private final UserService userService;
+    private final ExceptionHandlerUtil exceptionHandlerUtil;
+    private final ResponseEntityCreation responseEntityCreation;
 
     @Autowired
-    UserService userService;
-
-    @Autowired
-    ExceptionHandlerUtil exceptionHandlerUtil;
-
-    @Autowired
-    ResponseEntityCreation responseEntityCreation;
+    public UserController(UserService userService, ExceptionHandlerUtil exceptionHandlerUtil,
+                          ResponseEntityCreation responseEntityCreation){
+        this.userService = userService;
+        this.exceptionHandlerUtil = exceptionHandlerUtil;
+        this.responseEntityCreation = responseEntityCreation;
+    }
 
     @PostMapping
     public ResponseEntity postUser(@RequestBody User user){

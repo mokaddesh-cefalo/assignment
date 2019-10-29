@@ -20,13 +20,17 @@ import java.util.stream.Collectors;
 
 @Service
 public class StoryServiceImpl implements StoryService{
-    @Autowired StoryRepository storyRepository;
+    private final StoryRepository storyRepository;
+    private final StoryProperties storyProperties;
 
     @Autowired
-    @Qualifier("storyProperties")
-    StoryProperties storyProperties;
+    public StoryServiceImpl(StoryRepository storyRepository,
+                            @Qualifier("storyProperties")StoryProperties storyProperties){
+        this.storyRepository = storyRepository;
+        this.storyProperties = storyProperties;
+    }
 
-    String getLoggedInUserName(){
+    private String getLoggedInUserName(){
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
@@ -126,10 +130,5 @@ public class StoryServiceImpl implements StoryService{
                 (pageNumber < 0 ? 0 : pageNumber), storyProperties.getArticlePerPage(), Sort.by(columnName).ascending()
         );
         return storyRepository.findAll(pageable).toList();
-    }
-
-    List<String> makeStringToStringList(String mainString, String seperator){
-        return Arrays.stream(mainString.split(seperator))
-                .collect(Collectors.toList());
     }
 }

@@ -17,15 +17,17 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/stories")
 public class StoryController  {
+    private final StoryService storyService;
+    private final ExceptionHandlerUtil exceptionHandlerUtil;
+    private final ResponseEntityCreation responseEntityCreation;
 
     @Autowired
-    StoryService storyService;
-
-    @Autowired
-    ExceptionHandlerUtil exceptionHandlerUtil;
-
-    @Autowired
-    ResponseEntityCreation responseEntityCreation;
+    public StoryController(StoryService storyService, ExceptionHandlerUtil exceptionHandlerUtil,
+                           ResponseEntityCreation responseEntityCreation){
+        this.storyService = storyService;
+        this.exceptionHandlerUtil = exceptionHandlerUtil;
+        this.responseEntityCreation = responseEntityCreation;
+    }
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
