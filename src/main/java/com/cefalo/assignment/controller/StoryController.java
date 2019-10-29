@@ -36,8 +36,8 @@ public class StoryController  {
         return storyService.getAllStory();
     }
 
-    @GetMapping(value = "/{storyId}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity getStoryById(@PathVariable(value = "storyId") Long storyId){
+    @GetMapping(value = "/{story-id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity getStoryById(@PathVariable(value = "story-id") Long storyId){
         Optional<Story> fetchedStory = storyService.getStoryById(storyId);
 
         return responseEntityCreation
@@ -48,8 +48,8 @@ public class StoryController  {
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public List<Story> getAllStoryByPagination(
-            @RequestParam(value = "pagenumber", defaultValue = "${story.defaultPaginationPageNumber}") Integer pageNumber,
-            @RequestParam(value = "columnName", defaultValue = "${story.defaultPaginationColumnName}") String columnName
+            @RequestParam(value = "page-number", defaultValue = "${story.defaultPaginationPageNumber}") Integer pageNumber,
+            @RequestParam(value = "column-name", defaultValue = "${story.defaultPaginationColumnName}") String columnName
     ){
         return storyService.findAll(pageNumber, columnName);
     }
@@ -65,8 +65,8 @@ public class StoryController  {
         }
     }
 
-    @PostMapping(value = "/{storyId}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity updateStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "storyId") Long storyId){
+    @PostMapping(value = "/{story-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity updateStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "story-id") Long storyId){
         try {
             Optional<Story> fetchedStory = storyService.checkAuthorityThenUpdateStoryById(storyId, newVersionOfStory);
             return responseEntityCreation
@@ -78,8 +78,8 @@ public class StoryController  {
         }
     }
 
-    @DeleteMapping("/{storyId}")
-    public void deleteStoryById(@PathVariable(value = "storyId") Long storyId, HttpServletResponse response){
+    @DeleteMapping("/{story-id}")
+    public void deleteStoryById(@PathVariable(value = "story-id") Long storyId, HttpServletResponse response){
         response.setStatus(storyService.checkAuthorityThenDeleteStoryById(storyId));
     }
 

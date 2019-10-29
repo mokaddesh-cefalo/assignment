@@ -22,9 +22,9 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
 
     To Add a story send post request to ‘/api/stories’
     To get all stories send get request to ‘/api/stories’
-    To get a story by ID send get request to ‘/api/stoies/{storyId}’
-    To update a story by ID send post request to ‘/api/stoies/{storyId}’
-    To Delete a story by ID send delete request to ‘/api/stoies/{storyId}’
+    To get a story by ID send get request to ‘/api/stoies/{story-id}’
+    To update a story by ID send post request to ‘/api/stoies/{story-id}’
+    To Delete a story by ID send delete request to ‘/api/stoies/{story-id}’
     To get story using pagination send get request to ‘/api/stories/pagination’
     
 
@@ -109,7 +109,7 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
 
 ##Target: Find story Id
 
-#Get URL: /api/stories/{storyId}
+#Get URL: /api/stories/{story-id}
 
 #Description: Provide ‘Accept’ headers 
 
@@ -118,7 +118,7 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
             
 ##Target: Update story attached in request body  
 
-#Post URL: /api/stories/{storyId}
+#Post URL: /api/stories/{story-id}
 
 #Description: 
 
@@ -127,7 +127,7 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
 
 ##Target: Delete story Id
 
-#Get URL: /api/stories/{storyId}
+#Get URL: /api/stories/{story-id}
 
 #Description:
 
@@ -140,22 +140,22 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
 
 #Query Parameter:
 
-    *columnName, Type: string, Default value : publishedDate
-    *pagenumber, Type: integer($int32), Default value : 0
+    *column-name, Type: string, Default value : publishedDate
+    *page-number, Type: integer($int32), Default value : 0
     
 #Description:
 
     *Provide ‘Accept’ headers application/json for json response, application/xml for xml type response  
-    *‘pagenumber’ for number of page in pagination, default value is ‘0’
-    *‘columnName’ for name of Story table column which will be for sorting, default value is ‘publishedDate’
+    *‘page-number’ for number of page in pagination, default value is ‘0’
+    *‘column-name’ for name of Story table column which will be for sorting, default value is ‘publishedDate’
     
 ###User Class Information
 
 #Description:
 
     To Add a User send post request to ‘/api/users’
-    To get all stories by user send get request to ‘/api/users/{userName}/stories’
-    To get a User by UserName send get request to ‘/api/users/{userName}’
+    To get all stories by user send get request to ‘/api/users/{user-name}/stories’
+    To get a User by UserName send get request to ‘/api/users/{user-name}’
 
 #userName	string
 

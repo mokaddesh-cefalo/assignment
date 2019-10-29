@@ -38,14 +38,14 @@ public class UserController {
         }
     }
 
-    @GetMapping("/{userName}")
-    public ResponseEntity getUser(@PathVariable String userName){
+    @GetMapping("/{user-name}")
+    public ResponseEntity getUser(@PathVariable(value ="user-name" ) String userName){
         return  responseEntityCreation
                 .makeResponseEntity(userService.findUserByUserName(userName), HttpStatus.OK, HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/{userName}/stories")
-    public ResponseEntity getUserStories(@PathVariable String userName){
+    @GetMapping("/{user-name}/stories")
+    public ResponseEntity getUserStories(@PathVariable(value ="user-name" ) String userName){
         Optional<User> user = userService.findUserByUserName(userName);
         return responseEntityCreation
                 .makeResponseEntityOfStoryListFromUser(user, HttpStatus.OK, HttpStatus.NOT_FOUND);
