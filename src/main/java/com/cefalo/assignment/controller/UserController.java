@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity postUser(@RequestBody User user){
+    public ResponseEntity<?>  postUser(@RequestBody User user){
         try {
             return responseEntityCreation
                     .makeResponseEntity(userService.postUser(user), HttpStatus.CREATED);
@@ -39,13 +39,13 @@ public class UserController {
     }
 
     @GetMapping("/{user-name}")
-    public ResponseEntity getUser(@PathVariable(value ="user-name" ) String userName){
+    public ResponseEntity<?>  getUser(@PathVariable(value ="user-name" ) String userName){
         return  responseEntityCreation
                 .makeResponseEntity(userService.findUserByUserName(userName), HttpStatus.OK, HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/{user-name}/stories")
-    public ResponseEntity getUserStories(@PathVariable(value ="user-name" ) String userName){
+    public ResponseEntity<?>  getUserStories(@PathVariable(value ="user-name" ) String userName){
         Optional<User> user = userService.findUserByUserName(userName);
         return responseEntityCreation
                 .makeResponseEntityOfStoryListFromUser(user, HttpStatus.OK, HttpStatus.NOT_FOUND);

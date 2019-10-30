@@ -37,7 +37,7 @@ public class StoryController  {
     }
 
     @GetMapping(value = "/{story-id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity getStoryById(@PathVariable(value = "story-id") Long storyId){
+    public ResponseEntity<?> getStoryById(@PathVariable(value = "story-id") Long storyId){
         Optional<Story> fetchedStory = storyService.getStoryById(storyId);
 
         return responseEntityCreation
@@ -55,7 +55,7 @@ public class StoryController  {
     }
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity postStoryObject(@RequestBody Story story){
+    public ResponseEntity<?>  postStoryObject(@RequestBody Story story){
         try {
             return responseEntityCreation
                     .makeResponseEntity(storyService.saveNewStoryObject(story), HttpStatus.CREATED);
@@ -66,7 +66,7 @@ public class StoryController  {
     }
 
     @PostMapping(value = "/{story-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity updateStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "story-id") Long storyId){
+    public ResponseEntity<?>  updateStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "story-id") Long storyId){
         try {
             Optional<Story> fetchedStory = storyService.checkAuthorityThenUpdateStoryById(storyId, newVersionOfStory);
             return responseEntityCreation
