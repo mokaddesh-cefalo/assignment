@@ -211,4 +211,5 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
     }
   
 #To get all stories by user send get request to ‘/api/users/{user-name}/stories’
+
 #To get a User Info by UserName send get request to ‘/api/users/{user-name}’
