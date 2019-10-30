@@ -1,6 +1,7 @@
 package com.cefalo.assignment.config;
 
 import com.cefalo.assignment.model.business.StoryProperties;
+import com.cefalo.assignment.utils.AuthenticationResponse;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

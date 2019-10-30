@@ -186,10 +186,29 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
 
     Info: List of stories created by User
 
+##Target: Register a new user
+
+#Post URL: /api/users
+
 #Default User format to send as request body when content type is json to create a new user
 
     {
-    "password": "string",
-    "roles": "string",
-    "userName": "string"
+        "password": "string",
+        "roles": "string",
+        "userName": "string"
     }
+
+
+##Target: Get token for provided user name and password
+
+#Post URL: /api/authenticate
+
+#Default format to send as request body when content type is json to get a token for provided username and password
+
+    {
+        "userName": "string",
+        "password": "string"
+    }
+  
+#To get all stories by user send get request to ‘/api/users/{user-name}/stories’
+#To get a User Info by UserName send get request to ‘/api/users/{user-name}’

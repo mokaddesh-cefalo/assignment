@@ -1,4 +1,4 @@
-package com.cefalo.assignment.service.business;
+package com.cefalo.assignment.utils;
 
 import com.cefalo.assignment.model.orm.User;
 import org.springframework.security.core.GrantedAuthority;

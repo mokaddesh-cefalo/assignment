@@ -12,12 +12,12 @@ public class ResponseEntityCreationImpl implements ResponseEntityCreation {
 
     @Override
     public <T> ResponseEntity<?>  makeResponseEntity(T t, HttpStatus httpStatus){
-        return new ResponseEntity<>(t, httpStatus);
+        return ResponseEntity.status(httpStatus).body(t);
     }
 
     @Override
     public ResponseEntity<?>  makeResponseEntity(HttpStatus httpStatus){
-        return new ResponseEntity(httpStatus);
+        return ResponseEntity.status(httpStatus).body(null);
     }
 
     @Override
