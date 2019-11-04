@@ -76,7 +76,7 @@ public class StoryServiceImpl implements StoryService{
             newVersionOfStory = updateOldStoryByNewStory(olderVersionOfStory.get(), newVersionOfStory);
             return Optional.ofNullable(storyRepository.save(newVersionOfStory));
         } else {
-            throw new Exception(getLoggedInUserName() + " is not authorized to update " + storyId);
+            throw new Exception(getLoggedInUserName() + " is not authorized to update story-" + storyId);
         }
     }
 
