@@ -103,7 +103,7 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
 
     {
       "body": "string", 
-      "publishedDate": "2016-12-28T09:56:17.4728502",
+      "publishedDate": "05 january 2018",
       "title": "string"
     }
 
