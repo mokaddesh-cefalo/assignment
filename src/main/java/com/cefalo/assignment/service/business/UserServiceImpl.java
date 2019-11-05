@@ -1,7 +1,7 @@
 package com.cefalo.assignment.service.business;
 
 import com.cefalo.assignment.model.orm.User;
-import com.cefalo.assignment.service.orm.UserRepository;
+import com.cefalo.assignment.service.entities.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User postUser(User user) throws Exception{
+        System.out.println(user.getUserName());
         if(existsUserByUserName(user.getUserName())) throw new Exception("User Name already exists");
         return userRepository.save(user);
     }

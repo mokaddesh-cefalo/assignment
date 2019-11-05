@@ -3,7 +3,7 @@ package com.cefalo.assignment.service.business;
 import com.cefalo.assignment.model.business.StoryProperties;
 import com.cefalo.assignment.model.orm.Story;
 import com.cefalo.assignment.model.orm.User;
-import com.cefalo.assignment.service.orm.StoryRepository;
+import com.cefalo.assignment.service.entities.StoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class StoryServiceImpl implements StoryService{

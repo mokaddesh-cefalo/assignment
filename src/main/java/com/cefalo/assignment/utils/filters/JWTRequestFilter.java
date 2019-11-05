@@ -19,6 +19,7 @@ import java.io.IOException;
 
 @Service
 public class JWTRequestFilter extends OncePerRequestFilter {
+
     private final UserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
 
@@ -45,15 +46,19 @@ public class JWTRequestFilter extends OncePerRequestFilter {
         }
 
         if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
+            try {
+                UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
 
-            if (jwtUtil.validateToken(jwt, userDetails)) {
+                if (jwtUtil.validateToken(jwt, userDetails)) {
 
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                usernamePasswordAuthenticationToken
-                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
-                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                    usernamePasswordAuthenticationToken
+                            .setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
+                    SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                }
+            } catch (Exception e) {
+
             }
         }
         filterChain.doFilter(httpServletRequest, httpServletResponse);

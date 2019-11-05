@@ -1,5 +1,6 @@
 package com.cefalo.assignment.model.orm;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -10,8 +11,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @NoArgsConstructor
@@ -45,13 +49,16 @@ public class Story implements Serializable {
 
     @ApiModelProperty(notes = "Title of the story should keep as small as possible, it can be null")
     private String title;
+
+    @Lob
     @ApiModelProperty(notes = "Body of the story can be null")
     private String body;
 
     @ApiModelProperty(notes = "publishedDate should be a date converted into string will not check if it actually a date")
-    private String publishedDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd MMMM yyyy")
+    private Date publishedDate;
 
-    public Story(String title, String body, String publishedDate){
+    public Story(String title, String body, Date publishedDate){
         this.title = title;
         this.body = body;
         this.publishedDate = publishedDate;
