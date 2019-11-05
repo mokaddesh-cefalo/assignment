@@ -31,7 +31,7 @@ public class JWTController {
 
     @PostMapping
     public ResponseEntity<?> getAuthToken(@RequestBody AuthenticationRequest authenticationRequest) {
-        System.out.println(authenticationRequest.toString());
+
         try {
             return responseEntityCreation.makeResponseEntity(
                     authService.createAuthToken(authenticationRequest), HttpStatus.OK);

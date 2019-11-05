@@ -84,7 +84,8 @@ public class StoryController  {
 
     private ResponseEntity<?> getResponseEntityForUpdate(Story newVersionOfStory, Long storyId, Boolean isPatchUpdate) {
         try {
-            Optional<Story> fetchedStory = storyService.checkAuthorityThenUpdateStoryById(storyId, newVersionOfStory, isPatchUpdate);
+            Optional<Story> fetchedStory = storyService
+                    .checkAuthorityThenUpdateStoryById(storyId, newVersionOfStory, isPatchUpdate);
 
             return responseEntityCreation
                     .makeResponseEntity(fetchedStory, HttpStatus.OK, HttpStatus.NOT_FOUND);

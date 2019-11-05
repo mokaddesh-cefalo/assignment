@@ -34,6 +34,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                                     HttpServletResponse httpServletResponse,
                                     FilterChain filterChain) throws ServletException, IOException {
 
+        Boolean goNextFilter = true;
         try {
             final String authorizationHeader = httpServletRequest.getHeader("Authorization");
 
@@ -60,8 +61,11 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 
             }
         } catch (Exception e) {
+            goNextFilter = false;
+            httpServletResponse.sendError(400, "Invalid Token");
             e.printStackTrace();
         }
-        filterChain.doFilter(httpServletRequest, httpServletResponse);
+
+        if(goNextFilter) filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 }

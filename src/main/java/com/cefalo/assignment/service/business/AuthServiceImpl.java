@@ -31,7 +31,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public AuthenticationResponse createAuthToken(@RequestBody AuthenticationRequest authenticationRequest) throws BadCredentialsException{
+    public AuthenticationResponse createAuthToken(AuthenticationRequest authenticationRequest) throws BadCredentialsException{
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authenticationRequest.getUserName(),
                         authenticationRequest.getPassword())
