@@ -21,15 +21,12 @@ public class ExceptionHandlerUtilImpl implements ExceptionHandlerUtil {
     @Override
     public String getErrorString(Exception ex) {
         String ret = "";
-        try {
-
-            StringWriter errors = new StringWriter();
-            PrintWriter printWriter = new PrintWriter(errors);
+        try( StringWriter errors = new StringWriter();
+             PrintWriter printWriter = new PrintWriter(errors)) {
 
             ex.printStackTrace(printWriter);
             ret = errors.toString();
 
-            printWriter.close(); errors.close();
         }catch (IOException e) {
             ret = ret + e.getMessage() + e.fillInStackTrace();
         }

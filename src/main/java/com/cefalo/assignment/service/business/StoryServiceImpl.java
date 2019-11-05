@@ -13,9 +13,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.*;
+import java.util.function.Consumer;
 
 @Service
 public class StoryServiceImpl implements StoryService{
@@ -44,25 +46,31 @@ public class StoryServiceImpl implements StoryService{
     }
 
     @Override
+    @Transactional
     public List<Story> getAllStory(){
         List<Story> stories = new ArrayList<>();
+
         storyRepository.findAll().forEach(story -> {
             story.setCreatorName();
             stories.add(story);
         });
+
         return stories;
     }
 
     @Override
     public Optional<Story> getStoryById(Long storyId){
         Optional<Story> story = storyRepository.findById(storyId);
-        if(story.isPresent()) story.get().setCreatorName();
+
+        story.ifPresent(Story::setCreatorName);
         return story;
     }
 
+    /**method should have smaller size and single purpose but separating the concern cost a DB call*/
     @Override
     public Optional<Story> checkAuthorityThenUpdateStoryById
             (Long storyId, Story newVersionOfStory,Boolean isPatchUpdate) throws Exception{
+
         newVersionOfStory.setId(storyId);
         Optional<Story> olderVersionOfStory = storyRepository.findById(storyId);
 
@@ -72,13 +80,13 @@ public class StoryServiceImpl implements StoryService{
 
         String storyCreatorName = olderVersionOfStory.get().getCreatorName();
 
-        if(getLoggedInUserName().equals(storyCreatorName)){
-            if(isPatchUpdate) newVersionOfStory = updateOldStoryByNewStory(olderVersionOfStory.get(), newVersionOfStory);
-
-            return Optional.ofNullable(storyRepository.save(newVersionOfStory));
-        } else {
+        if(!getLoggedInUserName().equals(storyCreatorName))
             throw new Exception(getLoggedInUserName() + " is not authorized to update story-" + storyId);
-        }
+
+        if(isPatchUpdate)
+            newVersionOfStory = updateOldStoryByNewStory(olderVersionOfStory.get(), newVersionOfStory);
+
+        return Optional.ofNullable(storyRepository.save(newVersionOfStory));
     }
 
     /**Using java reflection API*/
@@ -101,6 +109,7 @@ public class StoryServiceImpl implements StoryService{
         return newVersionOfStory;
     }
 
+    /**method should have smaller size and single purpose but separating the concern cost a DB call*/
     @Override
     public int checkAuthorityThenDeleteStoryById(Long storyId) {
         Optional<Story> story = storyRepository.findById(storyId);

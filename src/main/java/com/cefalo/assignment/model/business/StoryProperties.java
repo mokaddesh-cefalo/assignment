@@ -48,6 +48,7 @@ public class StoryProperties {
 
         if(setOfFieldsNameToUseInPagination == null){
             setOfFieldsNameToUseInPagination = new HashSet<>();
+
             setOfFieldsNameToUseInPagination.addAll(
                     makeStringToStringList(fieldsNameToUseInPagination, ",")
             );
