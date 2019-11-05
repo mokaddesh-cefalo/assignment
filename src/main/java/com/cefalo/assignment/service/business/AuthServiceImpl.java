@@ -5,7 +5,6 @@ import com.cefalo.assignment.utils.AuthenticationResponse;
 import com.cefalo.assignment.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -34,12 +33,12 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public AuthenticationResponse createAuthToken(@RequestBody AuthenticationRequest authenticationRequest) throws BadCredentialsException{
         authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),
+                new UsernamePasswordAuthenticationToken(authenticationRequest.getUserName(),
                         authenticationRequest.getPassword())
         );
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(
-                authenticationRequest.getUsername()
+                authenticationRequest.getUserName()
         );
 
         Optional<String> jwt = Optional.ofNullable(jwtTokenUtil.generateToken(userDetails));

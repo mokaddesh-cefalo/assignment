@@ -3,7 +3,7 @@ package com.cefalo.assignment.service.business;
 import com.cefalo.assignment.model.business.StoryProperties;
 import com.cefalo.assignment.model.orm.Story;
 import com.cefalo.assignment.model.orm.User;
-import com.cefalo.assignment.service.orm.StoryRepository;
+import com.cefalo.assignment.service.entities.StoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class StoryServiceImpl implements StoryService{
@@ -62,7 +61,8 @@ public class StoryServiceImpl implements StoryService{
     }
 
     @Override
-    public Optional<Story> checkAuthorityThenUpdateStoryById(Long storyId, Story newVersionOfStory) throws Exception{
+    public Optional<Story> checkAuthorityThenUpdateStoryById
+            (Long storyId, Story newVersionOfStory,Boolean isPatchUpdate) throws Exception{
         newVersionOfStory.setId(storyId);
         Optional<Story> olderVersionOfStory = storyRepository.findById(storyId);
 
@@ -73,10 +73,11 @@ public class StoryServiceImpl implements StoryService{
         String storyCreatorName = olderVersionOfStory.get().getCreatorName();
 
         if(getLoggedInUserName().equals(storyCreatorName)){
-            newVersionOfStory = updateOldStoryByNewStory(olderVersionOfStory.get(), newVersionOfStory);
+            if(isPatchUpdate) newVersionOfStory = updateOldStoryByNewStory(olderVersionOfStory.get(), newVersionOfStory);
+
             return Optional.ofNullable(storyRepository.save(newVersionOfStory));
         } else {
-            throw new Exception(getLoggedInUserName() + " is not authorized to update " + storyId);
+            throw new Exception(getLoggedInUserName() + " is not authorized to update story-" + storyId);
         }
     }
 
@@ -119,7 +120,7 @@ public class StoryServiceImpl implements StoryService{
 
 
     @Override
-    public List<Story> findAll(int pageNumber, String columnName){
+    public List<Story> findAllForPagination(int pageNumber,int limit, String columnName){
         HashSet<String> columnNameForPagination = storyProperties.getSetOfFieldsNameToUseInPagination();
 
         if(!columnNameForPagination.contains(columnName)){
@@ -127,7 +128,7 @@ public class StoryServiceImpl implements StoryService{
         }
 
         Pageable pageable = PageRequest.of(
-                (pageNumber < 0 ? 0 : pageNumber), storyProperties.getArticlePerPage(), Sort.by(columnName).ascending()
+                (pageNumber < 0 ? 0 : pageNumber), limit, Sort.by(columnName).ascending()
         );
         return storyRepository.findAll(pageable).toList();
     }

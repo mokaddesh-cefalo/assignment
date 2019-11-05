@@ -4,6 +4,8 @@ import com.cefalo.assignment.model.orm.Story;
 import com.cefalo.assignment.service.business.StoryService;
 import com.cefalo.assignment.utils.ExceptionHandlerUtil;
 import com.cefalo.assignment.utils.ResponseEntityCreation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,6 +19,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/stories")
 public class StoryController  {
+
+    private static Logger logger = LogManager.getLogger("com");
     private final StoryService storyService;
     private final ExceptionHandlerUtil exceptionHandlerUtil;
     private final ResponseEntityCreation responseEntityCreation;
@@ -48,10 +52,11 @@ public class StoryController  {
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public List<Story> getAllStoryByPagination(
-            @RequestParam(value = "page-number", defaultValue = "${story.defaultPaginationPageNumber}") Integer pageNumber,
-            @RequestParam(value = "column-name", defaultValue = "${story.defaultPaginationColumnName}") String columnName
+            @RequestParam(value = "page", defaultValue = "${story.defaultPaginationPageNumber}") Integer pageNumber,
+            @RequestParam(value = "sort", defaultValue = "${story.defaultPaginationColumnName}") String sortByColumnName,
+            @RequestParam(value = "limit", defaultValue = "${story.articlePerPage}") int limit
     ){
-        return storyService.findAll(pageNumber, columnName);
+        return storyService.findAllForPagination(pageNumber, limit, sortByColumnName);
     }
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -60,19 +65,33 @@ public class StoryController  {
             return responseEntityCreation
                     .makeResponseEntity(storyService.saveNewStoryObject(story), HttpStatus.CREATED);
         }catch (Exception e){
+            logger.trace(exceptionHandlerUtil.getErrorString(e));
+
            return responseEntityCreation
             .makeResponseEntity(exceptionHandlerUtil.getRootThrowableMessage(e), HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
 
-    @PostMapping(value = "/{story-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<?>  updateStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "story-id") Long storyId){
+    @PatchMapping(value = "/{story-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<?>  patchStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "story-id") Long storyId){
+        return getResponseEntityForUpdate(newVersionOfStory, storyId, true);
+    }
+
+    @PutMapping(value = "/{story-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<?>  putStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "story-id") Long storyId){
+        return getResponseEntityForUpdate(newVersionOfStory, storyId, false);
+    }
+
+    private ResponseEntity<?> getResponseEntityForUpdate(Story newVersionOfStory, Long storyId, Boolean isPatchUpdate) {
         try {
-            Optional<Story> fetchedStory = storyService.checkAuthorityThenUpdateStoryById(storyId, newVersionOfStory);
+            Optional<Story> fetchedStory = storyService.checkAuthorityThenUpdateStoryById(storyId, newVersionOfStory, isPatchUpdate);
+
             return responseEntityCreation
                     .makeResponseEntity(fetchedStory, HttpStatus.OK, HttpStatus.NOT_FOUND);
 
-        }catch (Exception e){
+        } catch (Exception e) {
+            logger.trace(exceptionHandlerUtil.getErrorString(e));
+
             return responseEntityCreation
                     .makeResponseEntity(e.getMessage(), HttpStatus.UNAUTHORIZED);
         }
