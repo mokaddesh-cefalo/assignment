@@ -34,19 +34,19 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                                     HttpServletResponse httpServletResponse,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        final String authorizationHeader = httpServletRequest.getHeader("Authorization");
+        try {
+            final String authorizationHeader = httpServletRequest.getHeader("Authorization");
 
-        String userName = null;
-        String jwt = null;
+            String userName = null;
+            String jwt = null;
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
-            jwt = authorizationHeader.substring(7);
-            userName = jwtUtil.extractUsername(jwt);
+            if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
+                jwt = authorizationHeader.substring(7);
+                userName = jwtUtil.extractUsername(jwt);
 
-        }
+            }
 
-        if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            try {
+            if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
 
                 if (jwtUtil.validateToken(jwt, userDetails)) {
@@ -57,9 +57,10 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                             .setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
                     SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
                 }
-            } catch (Exception e) {
 
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }

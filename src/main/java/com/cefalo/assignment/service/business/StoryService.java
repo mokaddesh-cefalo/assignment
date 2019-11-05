@@ -11,8 +11,8 @@ public interface StoryService {
     Story saveNewStoryObject(Story story) throws Exception;
     List<Story> getAllStory();
     Optional<Story> getStoryById(Long storyId);
-    Optional<Story> checkAuthorityThenUpdateStoryById(Long storyId, Story newVersionOfStory) throws Exception;
+    Optional<Story> checkAuthorityThenUpdateStoryById(Long storyId, Story newVersionOfStory, Boolean isPatchUpdate) throws Exception;
     int checkAuthorityThenDeleteStoryById(Long storyId);
-    List<Story> findAll(int pageNumber, String columnName);
+    List<Story> findAllForPagination(int pageNumber,int limit, String columnName);
     Story updateOldStoryByNewStory(Story olderVersionOfStory, Story newVersionOfStory) throws IllegalArgumentException, IllegalAccessException;
 }
