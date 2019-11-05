@@ -23,7 +23,7 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
     To Add a story send post request to ‘/api/stories’
     To get all stories send get request to ‘/api/stories’
     To get a story by ID send get request to ‘/api/stoies/{story-id}’
-    To update a story by ID send post request to ‘/api/stoies/{story-id}’
+    To update a story by ID send PUT/PATCH request to ‘/api/stoies/{story-id}’
     To Delete a story by ID send delete request to ‘/api/stoies/{story-id}’
     To get story using pagination send get request to ‘/api/stories/pagination’
     
@@ -56,10 +56,9 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
 
     Info = (Last modified date will be will be automatically assigned after each update of story)
 
-#publishedDate	string 
+#publishedDate	string($date-time)
 
-    Info = (publishedDate should be a date converted into string will not check if it actually a date)
-    DateFormat = (YEAR-MONTH-DAY)T(HOUR:MINUTE:SECOND.MILISECOND) 2016-12-28T09:56:17.4728502
+    Info = publishedDate will be converted into date, pattern = 'dd MMMM yyyy', example = "05 january 2018"
 
 #title	string 
 
@@ -116,14 +115,23 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
             ‘Accept = application/json’ for json response
             ‘Accept = application/xml’ for xml type response
             
-##Target: Update story attached in request body  
+##Target: Full update of story with 'story-id' by request body. 
 
-#Post URL: /api/stories/{story-id}
+#PUT URL: /api/stories/{story-id}
 
 #Description: 
 
-    *Update a story attached in request body and id will be fetched from url. Only creator of the story can update it.
-    *Use information provided in Post of '/api/stories/'
+    *Only creator of the story can update it.
+    *For request body use information provided in Post of '/api/stories/'
+    
+##Target:Partial update of story with 'story-id' by request body. 
+
+#Patch URL: /api/stories/{story-id}
+
+#Description: 
+
+    *Only creator of the story can update it.
+    *For request body use information provided in Post of '/api/stories/'
 
 ##Target: Delete story Id
 
@@ -131,7 +139,7 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
 
 #Description:
 
-    *Delete a story using ID.Only creator of the story can Delete it
+    *Delete a story using ID. Only creator of the story can Delete it
     
 
 ##Target: Find story through pagination
@@ -140,14 +148,16 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
 
 #Query Parameter:
 
-    *column-name, Type: string, Default value : publishedDate
-    *page-number, Type: integer($int32), Default value : 0
+    *sort, Type: string, Default value : publishedDate
+    *page, Type: integer($int32), Default value : 0
+    *limit, Type: integer($int32), Default value : 3
     
 #Description:
 
     *Provide ‘Accept’ headers application/json for json response, application/xml for xml type response  
-    *‘page-number’ for number of page in pagination, default value is ‘0’
-    *‘column-name’ for name of Story table column which will be for sorting, default value is ‘publishedDate’
+    *‘page’ for number of page in pagination, default value is 0
+    *‘limit’ for number of stories in a page, default value is 3
+    *‘sort’ for name of Story table column which will be used for sorting, default value is ‘publishedDate’
     
 ###User Class Information
 
