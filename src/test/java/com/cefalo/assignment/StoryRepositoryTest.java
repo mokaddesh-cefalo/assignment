@@ -1,6 +1,6 @@
 package com.cefalo.assignment;
 import com.cefalo.assignment.model.orm.Story;
-import com.cefalo.assignment.service.entities.StoryRepository;
+import com.cefalo.assignment.repositories.StoryRepository;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;

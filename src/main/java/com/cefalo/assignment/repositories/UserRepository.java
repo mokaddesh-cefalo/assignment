@@ -1,4 +1,4 @@
-package com.cefalo.assignment.service.entities;
+package com.cefalo.assignment.repositories;
 
 import com.cefalo.assignment.model.orm.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
