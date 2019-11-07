@@ -1,8 +1,12 @@
 package com.cefalo.assignment.exception;
 
+import com.cefalo.assignment.utils.ExceptionHandlerUtil;
 import com.cefalo.assignment.utils.ResponseEntityCreation;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -20,6 +24,11 @@ import static org.springframework.http.HttpStatus.*;
 @Slf4j
 public class RestExceptionHandler {
 
+    Logger logger = LoggerFactory.getLogger(ResponseEntityCreation.class);
+
+    @Autowired
+    ExceptionHandlerUtil exceptionHandlerUtil;
+
     @Autowired
     ResponseEntityCreation responseEntityCreation;
 
@@ -27,6 +36,7 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     protected ResponseEntity<ApiError> handleEntityNotFound(EntityNotFoundException ex) {
+        logger.trace(ex.getMessage());
 
         ApiError apiError = new ApiError(NOT_FOUND);
         apiError.setMessage(ex.getMessage());
@@ -37,6 +47,8 @@ public class RestExceptionHandler {
     @ExceptionHandler(UnAuthorizedRequestException.class)
     protected ResponseEntity<ApiError> handleUnAuthorizedRequest(UnAuthorizedRequestException ex) {
 
+        logger.error(exceptionHandlerUtil.getErrorString(ex));
+
         ApiError apiError = new ApiError(UNAUTHORIZED);
         apiError.setMessage(ex.getMessage());
 
@@ -45,6 +57,8 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(InvalidFormatException.class)
     protected ResponseEntity<ApiError> handleInvalidFormatException(InvalidFormatException ex) {
+
+        logger.error(exceptionHandlerUtil.getErrorString(ex));
 
         ApiError apiError = new ApiError(BAD_REQUEST);
         int firstOccurance = ex.getLocalizedMessage().indexOf("at [Source:");
@@ -56,6 +70,8 @@ public class RestExceptionHandler {
     @ExceptionHandler(BadCredentialsException.class)
     protected ResponseEntity<ApiError> handleBadCredentialsException(BadCredentialsException ex) {
 
+        logger.error(exceptionHandlerUtil.getErrorString(ex));
+
         ApiError apiError = new ApiError(UNAUTHORIZED);
         apiError.setMessage(ex.getMessage());
         return responseEntityCreation.buildResponseEntity(apiError);
@@ -64,17 +80,21 @@ public class RestExceptionHandler {
     @ExceptionHandler(DuplicationOfUniqueValueException.class)
     protected ResponseEntity<ApiError> handleDuplicationOfUniqueValueException(DuplicationOfUniqueValueException ex) {
 
+        logger.error(exceptionHandlerUtil.getErrorString(ex));
+
         ApiError apiError = new ApiError(UNPROCESSABLE_ENTITY);
         apiError.setMessage(ex.getMessage());
         return responseEntityCreation.buildResponseEntity(apiError);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity handleMethodArgumentNotValidException( MethodArgumentNotValidException error ) {
+    public ResponseEntity handleMethodArgumentNotValidException( MethodArgumentNotValidException ex ) {
+
+        logger.error(exceptionHandlerUtil.getErrorString(ex));
 
         ApiError apiError = new ApiError(UNPROCESSABLE_ENTITY);
         apiError.setMessage("Validation error!");
-        BindingResult bindingResult = error.getBindingResult();
+        BindingResult bindingResult = ex.getBindingResult();
 
         bindingResult.getFieldErrors()
                 .forEach(e -> apiError.addSubError(e.getField(), e.getDefaultMessage()));
