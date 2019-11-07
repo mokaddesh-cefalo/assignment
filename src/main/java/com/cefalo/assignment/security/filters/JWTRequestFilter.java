@@ -1,6 +1,6 @@
-package com.cefalo.assignment.utils.filters;
+package com.cefalo.assignment.security.filters;
 
-import com.cefalo.assignment.utils.JwtUtil;
+import com.cefalo.assignment.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

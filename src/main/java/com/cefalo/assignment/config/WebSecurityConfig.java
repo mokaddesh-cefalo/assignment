@@ -1,6 +1,6 @@
 package com.cefalo.assignment.config;
 
-import com.cefalo.assignment.utils.filters.JWTRequestFilter;
+import com.cefalo.assignment.security.filters.JWTRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

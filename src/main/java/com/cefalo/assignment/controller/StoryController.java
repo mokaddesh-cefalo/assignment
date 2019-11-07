@@ -1,9 +1,11 @@
 package com.cefalo.assignment.controller;
 
+import com.cefalo.assignment.exception.EntityNotFoundException;
+import com.cefalo.assignment.exception.UnAuthorizedRequestException;
 import com.cefalo.assignment.model.orm.Story;
 import com.cefalo.assignment.service.business.StoryService;
-import com.cefalo.assignment.utils.ExceptionHandlerUtil;
 import com.cefalo.assignment.utils.ResponseEntityCreation;
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,14 +25,12 @@ public class StoryController  {
 
     private static Logger logger = LogManager.getLogger("com");
     private final StoryService storyService;
-    private final ExceptionHandlerUtil exceptionHandlerUtil;
     private final ResponseEntityCreation responseEntityCreation;
 
     @Autowired
-    public StoryController(StoryService storyService, ExceptionHandlerUtil exceptionHandlerUtil,
+    public StoryController(StoryService storyService,
                            ResponseEntityCreation responseEntityCreation){
         this.storyService = storyService;
-        this.exceptionHandlerUtil = exceptionHandlerUtil;
         this.responseEntityCreation = responseEntityCreation;
     }
 
@@ -41,11 +42,11 @@ public class StoryController  {
     }
 
     @GetMapping(value = "/{story-id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<?> getStoryById(@PathVariable(value = "story-id") Long storyId){
-        Optional<Story> fetchedStory = storyService.getStoryById(storyId);
+    public ResponseEntity<?> getStoryById
+            (@PathVariable(value = "story-id") Long storyId) throws EntityNotFoundException {
 
         return responseEntityCreation
-                .makeResponseEntity(fetchedStory, HttpStatus.OK, HttpStatus.NOT_FOUND);
+                .buildResponseEntity(storyService.getStoryById(storyId), HttpStatus.OK);
     }
 
     @GetMapping(value = "/pagination", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -60,42 +61,36 @@ public class StoryController  {
     }
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<?>  postStoryObject(@RequestBody Story story){
-        try {
-            return responseEntityCreation
-                    .makeResponseEntity(storyService.saveNewStoryObject(story), HttpStatus.CREATED);
-        }catch (Exception e){
-            logger.trace(exceptionHandlerUtil.getErrorString(e));
+    public ResponseEntity<?>  postStoryObject(@RequestBody @Valid Story story)
+            throws InvalidFormatException {
 
-           return responseEntityCreation
-            .makeResponseEntity(exceptionHandlerUtil.getRootThrowableMessage(e), HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+            return responseEntityCreation
+                    .buildResponseEntity(storyService.saveNewStoryObject(story), HttpStatus.CREATED);
     }
 
     @PatchMapping(value = "/{story-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<?>  patchStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "story-id") Long storyId){
+    public ResponseEntity<?>  patchStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "story-id") Long storyId)
+            throws UnAuthorizedRequestException, EntityNotFoundException, IllegalAccessException {
+
         return getResponseEntityForUpdate(newVersionOfStory, storyId, true);
     }
 
     @PutMapping(value = "/{story-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<?>  putStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "story-id") Long storyId){
+    public ResponseEntity<?>  putStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "story-id") Long storyId)
+            throws UnAuthorizedRequestException, EntityNotFoundException, IllegalAccessException  {
+
         return getResponseEntityForUpdate(newVersionOfStory, storyId, false);
     }
 
-    private ResponseEntity<?> getResponseEntityForUpdate(Story newVersionOfStory, Long storyId, Boolean isPatchUpdate) {
-        try {
+    private ResponseEntity<?> getResponseEntityForUpdate(Story newVersionOfStory, Long storyId, Boolean isPatchUpdate)
+    throws UnAuthorizedRequestException, EntityNotFoundException, IllegalAccessException {
+
             Optional<Story> fetchedStory = storyService
                     .checkAuthorityThenUpdateStoryById(storyId, newVersionOfStory, isPatchUpdate);
 
             return responseEntityCreation
-                    .makeResponseEntity(fetchedStory, HttpStatus.OK, HttpStatus.NOT_FOUND);
+                    .buildResponseEntity(fetchedStory, HttpStatus.OK);
 
-        } catch (Exception e) {
-            logger.trace(exceptionHandlerUtil.getErrorString(e));
-
-            return responseEntityCreation
-                    .makeResponseEntity(e.getMessage(), HttpStatus.UNAUTHORIZED);
-        }
     }
 
     @DeleteMapping("/{story-id}")

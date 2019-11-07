@@ -1,8 +1,8 @@
 package com.cefalo.assignment.service.business;
 
-import com.cefalo.assignment.utils.AuthenticationRequest;
-import com.cefalo.assignment.utils.AuthenticationResponse;
-import com.cefalo.assignment.utils.JwtUtil;
+import com.cefalo.assignment.security.AuthenticationRequest;
+import com.cefalo.assignment.security.AuthenticationResponse;
+import com.cefalo.assignment.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,7 +11,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Optional;
 

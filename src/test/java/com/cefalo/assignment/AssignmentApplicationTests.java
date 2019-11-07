@@ -15,12 +15,15 @@ class AssignmentApplicationTests {
 
 	@Test
 	void contextLoads() {
-		String dateInString = "05 january 2018";
+		int x = 3;
+		Object y = x;
+		System.out.println(y.toString());
+		/*String dateInString = "05 january 2018";
 		DateTimeFormatter formatter = DateTimeFormat.forPattern("dd MMMM yyyy");
 		Date date = DateTime.parse(dateInString, formatter).toDate();
 		System.out.println();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		System.out.println(format.format(date));
+		System.out.println(format.format(date));*/
 	}
 
 }

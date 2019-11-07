@@ -2,7 +2,7 @@ package com.cefalo.assignment.service.business;
 
 
 import com.cefalo.assignment.model.orm.User;
-import com.cefalo.assignment.utils.MyUserDetails;
+import com.cefalo.assignment.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,9 +22,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-       Optional<User> currentUser = userService.findUserByUserName(s);
-
-       if(!currentUser.isPresent()) throw new  UsernameNotFoundException("No such user : " + s);
-       return currentUser.map(MyUserDetails::new).get();
+       User currentUser = userService.findUserByUserName(s);
+       return Optional.ofNullable(currentUser).map(MyUserDetails::new).get();
     }
 }

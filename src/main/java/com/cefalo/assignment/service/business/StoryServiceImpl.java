@@ -1,5 +1,7 @@
 package com.cefalo.assignment.service.business;
 
+import com.cefalo.assignment.exception.EntityNotFoundException;
+import com.cefalo.assignment.exception.UnAuthorizedRequestException;
 import com.cefalo.assignment.model.business.StoryProperties;
 import com.cefalo.assignment.model.orm.Story;
 import com.cefalo.assignment.model.orm.User;
@@ -13,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.*;
@@ -35,17 +36,13 @@ public class StoryServiceImpl implements StoryService{
     }
 
     @Override
-    public Story saveNewStoryObject(Story story) throws Exception {
-        if(story.getId() != null) throw new Exception("Request Body Should not contain 'ID' field!");
-
-        /** setting current logged in user as creator */
-        /**TODO assign on prepersist*/
+    public Story saveNewStoryObject(Story story)  {
+        story.setId(null);
         story.setCreator(new User( getLoggedInUserName() ));
         return storyRepository.save(story);
     }
 
     @Override
-    @Transactional
     public List<Story> getAllStory(){
         List<Story> stories = new ArrayList<>();
 
@@ -58,29 +55,27 @@ public class StoryServiceImpl implements StoryService{
     }
 
     @Override
-    public Optional<Story> getStoryById(Long storyId){
+    public Optional<Story> getStoryById(Long storyId) throws EntityNotFoundException {
         Optional<Story> story = storyRepository.findById(storyId);
 
-        story.ifPresent(Story::setCreatorName);
+        if(!story.isPresent()) {
+            throw  new EntityNotFoundException(Story.class, "ID", storyId.toString());
+        }
+
+        story.get().setCreatorName();
         return story;
     }
 
     /**method should have smaller size and single purpose but separating the concern cost a DB call*/
     @Override
     public Optional<Story> checkAuthorityThenUpdateStoryById
-            (Long storyId, Story newVersionOfStory,Boolean isPatchUpdate) throws Exception{
+            (Long storyId, Story newVersionOfStory,Boolean isPatchUpdate)
+            throws EntityNotFoundException, UnAuthorizedRequestException, IllegalAccessException {
 
         newVersionOfStory.setId(storyId);
         Optional<Story> olderVersionOfStory = storyRepository.findById(storyId);
 
-        if(!olderVersionOfStory.isPresent()) {
-            return olderVersionOfStory;
-        }
-
-        String storyCreatorName = olderVersionOfStory.get().getCreatorName();
-
-        if(!getLoggedInUserName().equals(storyCreatorName))
-            throw new Exception(getLoggedInUserName() + " is not authorized to update story-" + storyId);
+        throwExceptionForInvalidStoryUpdateorDeleteRequest(storyId, olderVersionOfStory.orElse(null));
 
         if(isPatchUpdate)
             newVersionOfStory = updateOldStoryByNewStory(olderVersionOfStory.get(), newVersionOfStory);
@@ -88,9 +83,21 @@ public class StoryServiceImpl implements StoryService{
         return Optional.ofNullable(storyRepository.save(newVersionOfStory));
     }
 
+    /**method should have smaller size and single purpose but separating the concern cost a DB call*/
+    @Override
+    public int checkAuthorityThenDeleteStoryById(Long storyId) throws EntityNotFoundException, UnAuthorizedRequestException {
+        Optional<Story> story = storyRepository.findById(storyId);
+
+        throwExceptionForInvalidStoryUpdateorDeleteRequest(storyId, story.orElse(null));
+        storyRepository.delete(story.get());
+        return HttpStatus.OK.value();
+    }
+
     /**Using java reflection API*/
     @Override
-    public Story updateOldStoryByNewStory(Story olderVersionOfStory, Story newVersionOfStory) throws IllegalArgumentException, IllegalAccessException {
+    public Story updateOldStoryByNewStory(Story olderVersionOfStory, Story newVersionOfStory)
+            throws IllegalAccessException {
+
         HashSet<String> setOfFieldsToReplace = storyProperties.getSetOfReplaceFieldsOnUpdate();
 
         for(Field field: Story.class.getDeclaredFields()) {
@@ -108,22 +115,13 @@ public class StoryServiceImpl implements StoryService{
         return newVersionOfStory;
     }
 
-    /**method should have smaller size and single purpose but separating the concern cost a DB call*/
-    @Override
-    public int checkAuthorityThenDeleteStoryById(Long storyId) {
-        Optional<Story> story = storyRepository.findById(storyId);
-
-        if(!story.isPresent()) {
-            return HttpStatus.NOT_FOUND.value();// storyProperties.getDeleteNotFoundStatusCode();
+    private void throwExceptionForInvalidStoryUpdateorDeleteRequest(Long storyId, Story story) throws EntityNotFoundException, UnAuthorizedRequestException {
+        if(story == null) {
+            throw  new EntityNotFoundException(Story.class, "ID", storyId.toString());
         }
 
-        String storyCreatorName = story.get().getCreatorName();
-
-        if(getLoggedInUserName().equals(storyCreatorName)) {
-            storyRepository.delete(story.get());
-            return HttpStatus.OK.value();
-        }
-        return HttpStatus.UNAUTHORIZED.value();
+        if(!getLoggedInUserName().equals(story.getCreatorName()))
+            throw new UnAuthorizedRequestException(getLoggedInUserName() + " is not authorized to update or delete story-" + storyId);
     }
 
 
