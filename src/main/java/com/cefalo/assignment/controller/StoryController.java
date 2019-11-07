@@ -34,13 +34,6 @@ public class StoryController  {
         this.responseEntityCreation = responseEntityCreation;
     }
 
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
-    public List<Story> getAllStory(){
-        return storyService.getAllStory();
-    }
-
     @GetMapping(value = "/{story-id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<?> getStoryById
             (@PathVariable(value = "story-id") Long storyId) throws EntityNotFoundException {
@@ -49,13 +42,13 @@ public class StoryController  {
                 .buildResponseEntity(storyService.getStoryById(storyId), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/pagination", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public List<Story> getAllStoryByPagination(
             @RequestParam(value = "page", defaultValue = "${story.defaultPaginationPageNumber}") Integer pageNumber,
             @RequestParam(value = "sort", defaultValue = "${story.defaultPaginationColumnName}") String sortByColumnName,
-            @RequestParam(value = "limit", defaultValue = "${story.articlePerPage}") int limit
+            @RequestParam(value = "limit", defaultValue = "${story.articlePerPage}") Integer limit
     ){
         return storyService.findAllForPagination(pageNumber, limit, sortByColumnName);
     }

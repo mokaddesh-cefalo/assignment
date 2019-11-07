@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
+@Table(indexes = {@Index(columnList = "publishedDate")})
 @NoArgsConstructor
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
