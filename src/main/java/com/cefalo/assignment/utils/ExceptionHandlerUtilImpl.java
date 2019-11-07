@@ -1,6 +1,5 @@
 package com.cefalo.assignment.utils;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

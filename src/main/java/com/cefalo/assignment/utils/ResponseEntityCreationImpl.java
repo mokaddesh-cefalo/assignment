@@ -1,34 +1,25 @@
 package com.cefalo.assignment.utils;
 
-import com.cefalo.assignment.model.orm.User;
+import com.cefalo.assignment.exception.ApiError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class ResponseEntityCreationImpl implements ResponseEntityCreation {
 
     @Override
-    public <T> ResponseEntity<?>  makeResponseEntity(T t, HttpStatus httpStatus){
+    public <T> ResponseEntity<?> buildResponseEntity(T t, HttpStatus httpStatus){
         return ResponseEntity.status(httpStatus).body(t);
     }
 
     @Override
-    public ResponseEntity<?>  makeResponseEntity(HttpStatus httpStatus){
+    public ResponseEntity<?> buildResponseEntity(HttpStatus httpStatus){
         return ResponseEntity.status(httpStatus).body(null);
     }
 
     @Override
-    public ResponseEntity<?>  makeResponseEntity(Optional optional, HttpStatus inSuccess, HttpStatus inFailure){
-        return  (optional.isPresent()) ? makeResponseEntity(optional.get(), inSuccess) : makeResponseEntity(inFailure);
+    public ResponseEntity<ApiError> buildResponseEntity(ApiError apiError) {
+        return new ResponseEntity<>(apiError, apiError.getStatus());
     }
-
-    @Override
-    public <T extends User> ResponseEntity<?>  makeResponseEntityOfStoryListFromUser
-            (Optional<T> optional, HttpStatus inSuccess, HttpStatus inFailure){
-        return  (optional.isPresent()) ? makeResponseEntity(optional.get().getStories(), inSuccess) : makeResponseEntity(inFailure);
-    }
-
 }

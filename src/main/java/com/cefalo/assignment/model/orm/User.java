@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 @ApiModel(description = "To Add a User send post request to '/api/users'<br>" +
@@ -23,11 +24,13 @@ public class User {
 
     @ApiModelProperty(notes = "Should be unique and will be used as 'ID' for user table")
     @Id
+    @NotNull
     @Column(unique = true, nullable = false)
     private String userName;
 
     /**TODO password should be encoded*/
     @Column(nullable = false)
+    @NotNull
     private String password;
 
     private Boolean active;

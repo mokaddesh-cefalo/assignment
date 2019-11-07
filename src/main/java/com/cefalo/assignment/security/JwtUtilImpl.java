@@ -1,4 +1,4 @@
-package com.cefalo.assignment.utils;
+package com.cefalo.assignment.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

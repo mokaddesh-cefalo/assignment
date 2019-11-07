@@ -1,8 +1,10 @@
 package com.cefalo.assignment.service.business;
 
+import com.cefalo.assignment.exception.DuplicationOfUniqueValueException;
 import com.cefalo.assignment.model.orm.User;
-import com.cefalo.assignment.service.entities.UserRepository;
+import com.cefalo.assignment.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,20 +18,22 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    public boolean existsUserByUserName(String userName){
-        return userRepository.existsUserByUserName(userName);
-    }
 
     @Override
-    public User postUser(User user) throws Exception{
-        System.out.println(user.getUserName());
-        if(existsUserByUserName(user.getUserName())) throw new Exception("User Name already exists");
+    public User postUser(User user) throws DuplicationOfUniqueValueException {
+
+        if(userRepository.existsUserByUserName(user.getUserName()))
+            throw new DuplicationOfUniqueValueException("User Name already exists");
+
         return userRepository.save(user);
     }
 
     @Override
-    public Optional<User> findUserByUserName(String userName){
-        return userRepository.findById(userName);
+    public User findUserByUserName(String userName) throws UsernameNotFoundException{
+        Optional<User> userOptional = userRepository.findById(userName);
+
+        if(!userOptional.isPresent()) throw new UsernameNotFoundException("User is not found : " + userName);
+        return userOptional.get();
     }
 
 }
