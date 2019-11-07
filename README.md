@@ -26,7 +26,7 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
     To get a story by ID send get request to ‘/api/stoies/{story-id}’
     To update a story by ID send PUT/PATCH request to ‘/api/stoies/{story-id}’
     To Delete a story by ID send delete request to ‘/api/stoies/{story-id}’
-    To get story using pagination send get request to ‘/api/stories/pagination’
+    To get story using pagination send get request to ‘/api/stories’
     
 
 ##Rules
@@ -77,7 +77,23 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
 
             ‘Accept = application/json’ for json response
             ‘Accept = application/xml’ for xml type response
-            
+
+##Target: Find story through pagination
+
+#Get URL: /api/stories
+
+#Query Parameter:
+
+    *sort, Type: string, Default value : publishedDate
+    *page, Type: integer($int32), Default value : 0
+    *limit, Type: integer($int32), Default value : 3
+    
+#Description:
+
+    *Provide ‘Accept’ headers application/json for json response, application/xml for xml type response  
+    *‘page’ for number of page in pagination, default value is 0
+    *‘limit’ for number of stories in a page, default value is 3
+    *‘sort’ for name of Story table column which will be used for sorting, default value is ‘publishedDate’            
             
 ##Target: Create a new story attached in request body 
 
@@ -142,23 +158,6 @@ Starting URL: http://localhost:8080 and for quick documentation use http://local
 
     *Delete a story using ID. Only creator of the story can Delete it
     
-
-##Target: Find story through pagination
-
-#Get URL: /api/stories/pagination
-
-#Query Parameter:
-
-    *sort, Type: string, Default value : publishedDate
-    *page, Type: integer($int32), Default value : 0
-    *limit, Type: integer($int32), Default value : 3
-    
-#Description:
-
-    *Provide ‘Accept’ headers application/json for json response, application/xml for xml type response  
-    *‘page’ for number of page in pagination, default value is 0
-    *‘limit’ for number of stories in a page, default value is 3
-    *‘sort’ for name of Story table column which will be used for sorting, default value is ‘publishedDate’
     
 ###User Class Information
 
