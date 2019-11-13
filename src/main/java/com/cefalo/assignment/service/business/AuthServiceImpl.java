@@ -31,14 +31,12 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AuthenticationResponse createAuthToken(AuthenticationRequest authenticationRequest) throws BadCredentialsException{
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authenticationRequest.getUserName(),
-                        authenticationRequest.getPassword())
-        );
-
         UserDetails userDetails = userDetailsService.loadUserByUsername(
                 authenticationRequest.getUserName()
         );
+
+        if(!userDetails.getPassword().equals(authenticationRequest.getPassword()))
+            throw new BadCredentialsException("Password does not match!");
 
         Optional<String> jwt = Optional.ofNullable(jwtTokenUtil.generateToken(userDetails));
         return jwt.map(AuthenticationResponse::new).get();
