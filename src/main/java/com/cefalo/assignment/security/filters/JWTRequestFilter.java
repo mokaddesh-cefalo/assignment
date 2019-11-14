@@ -35,11 +35,13 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
 
         Boolean goNextFilter = true;
+
         try {
             final String authorizationHeader = httpServletRequest.getHeader("Authorization");
 
             String userName = null;
             String jwt = null;
+
 
             if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
                 jwt = authorizationHeader.substring(7);
@@ -56,16 +58,22 @@ public class JWTRequestFilter extends OncePerRequestFilter {
                             new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     usernamePasswordAuthenticationToken
                             .setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
+
                     SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                    logger.info(userDetails.getUsername() + "logged in");
                 }
 
             }
         } catch (Exception e) {
+
             goNextFilter = false;
             httpServletResponse.sendError(400, "Invalid Token");
             e.printStackTrace();
         }
 
-        if(goNextFilter) filterChain.doFilter(httpServletRequest, httpServletResponse);
+        if(goNextFilter) {
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
+            SecurityContextHolder.getContext().setAuthentication(null);
+        }
     }
 }
