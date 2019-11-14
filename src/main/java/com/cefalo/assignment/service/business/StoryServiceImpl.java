@@ -4,17 +4,15 @@ import com.cefalo.assignment.exception.EntityNotFoundException;
 import com.cefalo.assignment.exception.UnAuthorizedRequestException;
 import com.cefalo.assignment.model.business.StoryProperties;
 import com.cefalo.assignment.model.orm.Story;
-import com.cefalo.assignment.model.orm.User;
 import com.cefalo.assignment.repositories.StoryRepository;
+import com.cefalo.assignment.security.LoggedInUserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.*;
@@ -31,14 +29,11 @@ public class StoryServiceImpl implements StoryService{
         this.storyProperties = storyProperties;
     }
 
-    private String getLoggedInUserName(){
-        return SecurityContextHolder.getContext().getAuthentication().getName();
-    }
-
     @Override
-    public Story saveNewStoryObject(Story story)  {
+    public Story saveNewStoryObject(Story story) {
+
         story.setId(null);
-        story.setCreator(new User( getLoggedInUserName() ));
+        story.setCreator(LoggedInUserInfo.getLoggedInUser());
         return storyRepository.save(story);
     }
 
@@ -120,8 +115,8 @@ public class StoryServiceImpl implements StoryService{
             throw  new EntityNotFoundException(Story.class, "ID", storyId.toString());
         }
 
-        if(!getLoggedInUserName().equals(story.getCreatorName()))
-            throw new UnAuthorizedRequestException(getLoggedInUserName() + " is not authorized to update or delete story-" + storyId);
+        if(!LoggedInUserInfo.getLoggedInUserName().equals(story.getCreatorName()))
+            throw new UnAuthorizedRequestException(LoggedInUserInfo.getLoggedInUserName() + " is not authorized to update or delete story-" + storyId);
     }
 
 
