@@ -36,7 +36,7 @@ public class Story implements Serializable {
             "a automatically generated 'ID' will assigned to ID on creation time" +
             "providing ID on creation time can throw exception")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false)
     private Long id;
 

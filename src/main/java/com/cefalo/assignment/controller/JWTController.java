@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/authenticate")
@@ -23,7 +26,9 @@ public class JWTController {
     }
 
     @PostMapping
-    public ResponseEntity<?> getAuthToken(@RequestBody AuthenticationRequest authenticationRequest) throws BadCredentialsException{
+    public ResponseEntity<?> getAuthToken(@RequestBody @Valid AuthenticationRequest authenticationRequest)
+            throws BadCredentialsException, MethodArgumentNotValidException {
+
         return responseEntityCreation.buildResponseEntity(
                 authService.createAuthToken(authenticationRequest), HttpStatus.OK);
     }

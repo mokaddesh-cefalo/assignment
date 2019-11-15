@@ -36,7 +36,7 @@ public class RestExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     protected ResponseEntity<ApiError> handleEntityNotFound(EntityNotFoundException ex) {
-        logger.trace(ex.getMessage());
+        log.trace(ex.getMessage());
 
         ApiError apiError = new ApiError(NOT_FOUND);
         apiError.setMessage(ex.getMessage());
@@ -47,7 +47,7 @@ public class RestExceptionHandler {
     @ExceptionHandler(UnAuthorizedRequestException.class)
     protected ResponseEntity<ApiError> handleUnAuthorizedRequest(UnAuthorizedRequestException ex) {
 
-        logger.error(exceptionHandlerUtil.getErrorString(ex));
+        log.error(exceptionHandlerUtil.getErrorString(ex));
 
         ApiError apiError = new ApiError(UNAUTHORIZED);
         apiError.setMessage(ex.getMessage());
@@ -58,7 +58,7 @@ public class RestExceptionHandler {
     @ExceptionHandler(InvalidFormatException.class)
     protected ResponseEntity<ApiError> handleInvalidFormatException(InvalidFormatException ex) {
 
-        logger.error(exceptionHandlerUtil.getErrorString(ex));
+        log.error(exceptionHandlerUtil.getErrorString(ex));
 
         ApiError apiError = new ApiError(BAD_REQUEST);
         int firstOccurance = ex.getLocalizedMessage().indexOf("at [Source:");
@@ -70,7 +70,7 @@ public class RestExceptionHandler {
     @ExceptionHandler(BadCredentialsException.class)
     protected ResponseEntity<ApiError> handleBadCredentialsException(BadCredentialsException ex) {
 
-        logger.error(exceptionHandlerUtil.getErrorString(ex));
+        log.error(exceptionHandlerUtil.getErrorString(ex));
 
         ApiError apiError = new ApiError(UNAUTHORIZED);
         apiError.setMessage(ex.getMessage());
@@ -80,7 +80,7 @@ public class RestExceptionHandler {
     @ExceptionHandler(DuplicationOfUniqueValueException.class)
     protected ResponseEntity<ApiError> handleDuplicationOfUniqueValueException(DuplicationOfUniqueValueException ex) {
 
-        logger.error(exceptionHandlerUtil.getErrorString(ex));
+        log.error(exceptionHandlerUtil.getErrorString(ex));
 
         ApiError apiError = new ApiError(UNPROCESSABLE_ENTITY);
         apiError.setMessage(ex.getMessage());
@@ -90,7 +90,7 @@ public class RestExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity handleMethodArgumentNotValidException( MethodArgumentNotValidException ex ) {
 
-        logger.error(exceptionHandlerUtil.getErrorString(ex));
+        log.error(exceptionHandlerUtil.getErrorString(ex));
 
         ApiError apiError = new ApiError(UNPROCESSABLE_ENTITY);
         apiError.setMessage("Validation error!");

@@ -1,0 +1,780 @@
+[INFO ] 2019-11-11 17:04:19.987 [main] AssignmentApplication - Starting AssignmentApplication on Mokaddesh-latitude with PID 15332 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-11 17:04:19.998 [main] AssignmentApplication - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-11 17:04:19.998 [main] AssignmentApplication - The following profiles are active: dev
+[DEBUG] 2019-11-11 17:04:22.274 [main] HikariConfig - Driver class org.h2.Driver found in Thread context class loader TomcatEmbeddedWebappClassLoader
+  context: ROOT
+  delegate: true
+----------> Parent Classloader:
+jdk.internal.loader.ClassLoaders$AppClassLoader@2626b418
+
+[DEBUG] 2019-11-11 17:04:22.287 [main] HikariConfig - HikariPool-1 - configuration:
+[DEBUG] 2019-11-11 17:04:22.288 [main] HikariConfig - allowPoolSuspension.............false
+[DEBUG] 2019-11-11 17:04:22.288 [main] HikariConfig - autoCommit......................true
+[DEBUG] 2019-11-11 17:04:22.288 [main] HikariConfig - catalog.........................none
+[DEBUG] 2019-11-11 17:04:22.288 [main] HikariConfig - connectionInitSql...............none
+[DEBUG] 2019-11-11 17:04:22.288 [main] HikariConfig - connectionTestQuery.............none
+[DEBUG] 2019-11-11 17:04:22.288 [main] HikariConfig - connectionTimeout...............30000
+[DEBUG] 2019-11-11 17:04:22.289 [main] HikariConfig - dataSource......................none
+[DEBUG] 2019-11-11 17:04:22.289 [main] HikariConfig - dataSourceClassName.............none
+[DEBUG] 2019-11-11 17:04:22.289 [main] HikariConfig - dataSourceJNDI..................none
+[DEBUG] 2019-11-11 17:04:22.289 [main] HikariConfig - dataSourceProperties............{password=<masked>}
+[DEBUG] 2019-11-11 17:04:22.289 [main] HikariConfig - driverClassName................."org.h2.Driver"
+[DEBUG] 2019-11-11 17:04:22.289 [main] HikariConfig - healthCheckProperties...........{}
+[DEBUG] 2019-11-11 17:04:22.289 [main] HikariConfig - healthCheckRegistry.............none
+[DEBUG] 2019-11-11 17:04:22.289 [main] HikariConfig - idleTimeout.....................600000
+[DEBUG] 2019-11-11 17:04:22.289 [main] HikariConfig - initializationFailTimeout.......1
+[DEBUG] 2019-11-11 17:04:22.289 [main] HikariConfig - isolateInternalQueries..........false
+[DEBUG] 2019-11-11 17:04:22.290 [main] HikariConfig - jdbcUrl.........................jdbc:h2:mem:testdb
+[DEBUG] 2019-11-11 17:04:22.290 [main] HikariConfig - leakDetectionThreshold..........0
+[DEBUG] 2019-11-11 17:04:22.290 [main] HikariConfig - maxLifetime.....................1800000
+[DEBUG] 2019-11-11 17:04:22.290 [main] HikariConfig - maximumPoolSize.................10
+[DEBUG] 2019-11-11 17:04:22.290 [main] HikariConfig - metricRegistry..................none
+[DEBUG] 2019-11-11 17:04:22.290 [main] HikariConfig - metricsTrackerFactory...........none
+[DEBUG] 2019-11-11 17:04:22.290 [main] HikariConfig - minimumIdle.....................10
+[DEBUG] 2019-11-11 17:04:22.290 [main] HikariConfig - password........................<masked>
+[DEBUG] 2019-11-11 17:04:22.290 [main] HikariConfig - poolName........................"HikariPool-1"
+[DEBUG] 2019-11-11 17:04:22.290 [main] HikariConfig - readOnly........................false
+[DEBUG] 2019-11-11 17:04:22.290 [main] HikariConfig - registerMbeans..................false
+[DEBUG] 2019-11-11 17:04:22.290 [main] HikariConfig - scheduledExecutor...............none
+[DEBUG] 2019-11-11 17:04:22.291 [main] HikariConfig - schema..........................none
+[DEBUG] 2019-11-11 17:04:22.291 [main] HikariConfig - threadFactory...................internal
+[DEBUG] 2019-11-11 17:04:22.291 [main] HikariConfig - transactionIsolation............default
+[DEBUG] 2019-11-11 17:04:22.291 [main] HikariConfig - username........................"fish"
+[DEBUG] 2019-11-11 17:04:22.291 [main] HikariConfig - validationTimeout...............5000
+[INFO ] 2019-11-11 17:04:22.291 [main] HikariDataSource - HikariPool-1 - Starting...
+[DEBUG] 2019-11-11 17:04:22.400 [main] HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=FISH
+[INFO ] 2019-11-11 17:04:22.402 [main] HikariDataSource - HikariPool-1 - Start completed.
+[DEBUG] 2019-11-11 17:04:22.503 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=1, active=0, idle=1, waiting=0)
+[DEBUG] 2019-11-11 17:04:22.505 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn1: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:04:22.505 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn2: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:04:22.506 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn3: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:04:22.506 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn4: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:04:22.507 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn5: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:04:22.507 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn6: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:04:22.508 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn7: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:04:22.508 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn8: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:04:22.509 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn9: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:04:22.509 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:04:23.776 [main] JWTRequestFilter - Filter 'JWTRequestFilter' configured for use
+[INFO ] 2019-11-11 17:04:24.914 [main] AssignmentApplication - Started AssignmentApplication in 5.763 seconds (JVM running for 7.387)
+[DEBUG] 2019-11-11 17:04:52.504 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:05:22.506 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:05:52.508 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[ERROR] 2019-11-11 17:06:09.028 [http-nio-8080-exec-4] RestExceptionHandler - org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> com.cefalo.assignment.controller.UserController.postUser(com.cefalo.assignment.model.orm.User) throws org.springframework.web.bind.MethodArgumentNotValidException,com.cefalo.assignment.exception.DuplicationOfUniqueValueException: [Field error in object 'user' on field 'password': rejected value [null]; codes [NotNull.user.password,NotNull.password,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [user.password,password]; arguments []; default message [password]]; default message [must not be null]] 
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:139)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:121)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:167)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:134)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:113)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.www.BasicAuthenticationFilter.doFilterInternal(BasicAuthenticationFilter.java:154)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at com.cefalo.assignment.security.filters.JWTRequestFilter.doFilterInternal(JWTRequestFilter.java:69)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1579)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:835)
+
+[DEBUG] 2019-11-11 17:06:22.510 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:06:52.511 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:07:22.513 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:07:52.515 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:08:22.517 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:08:52.519 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:09:22.521 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:09:52.522 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:10:22.523 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:10:52.524 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:11:22.525 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:11:52.526 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:12:22.528 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:12:52.530 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:13:22.531 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:13:52.533 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:14:22.534 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:14:52.535 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:15:22.536 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:15:52.538 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:16:22.539 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:16:52.541 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:17:22.544 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:17:52.545 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:18:22.546 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:18:52.547 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:19:22.549 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:19:52.551 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:20:22.552 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:20:52.554 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:21:22.556 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:21:52.557 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:22:22.558 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:22:52.560 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:23:22.561 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:23:52.562 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:24:22.564 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:24:52.565 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:25:22.567 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:25:52.568 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:26:22.569 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:26:52.571 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:27:22.572 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:27:52.575 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:28:22.576 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:28:52.577 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:29:22.578 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:29:52.580 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:30:22.581 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:30:52.584 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:31:22.585 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:31:52.586 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:32:22.588 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:32:52.590 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:33:22.592 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:33:40.005 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn3: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-11 17:33:40.008 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn10: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:33:40.243 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn4: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-11 17:33:40.245 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn11: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:33:46.068 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn6: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-11 17:33:46.070 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn12: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:33:52.594 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:33:54.708 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn2: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-11 17:33:54.710 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn13: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:33:56.629 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn5: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-11 17:33:56.630 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn14: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:33:58.718 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn1: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-11 17:33:58.719 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn15: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:34:01.919 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn7: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-11 17:34:01.920 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn16: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:34:13.238 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn8: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-11 17:34:13.240 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn17: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:34:13.258 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn0: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-11 17:34:13.260 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn18: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:34:22.428 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn9: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-11 17:34:22.430 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn19: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-11 17:34:22.596 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:34:52.598 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:35:22.599 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:35:52.601 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:36:22.603 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:36:52.604 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:37:22.605 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:37:52.606 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:38:22.607 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:38:52.608 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-11 17:39:22.609 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[WARN ] 2019-11-12 07:35:00.277 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=13h55m52s845ms309µs500ns).
+[DEBUG] 2019-11-12 07:35:00.278 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:35:00.278 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn11: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 07:35:00.278 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn10: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 07:35:00.278 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn12: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 07:35:00.279 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn13: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 07:35:00.279 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn16: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 07:35:00.279 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn15: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 07:35:00.279 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn20: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 07:35:00.279 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn14: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 07:35:00.280 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn19: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 07:35:00.280 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn18: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 07:35:00.280 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn17: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 07:35:00.280 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn21: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 07:35:00.280 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn22: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 07:35:00.280 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn23: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 07:35:00.281 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn24: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 07:35:00.281 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn25: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 07:35:00.281 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn26: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 07:35:00.281 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn27: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 07:35:00.282 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn28: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 07:35:00.282 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn29: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 07:35:30.279 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:36:00.280 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:36:30.281 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:37:00.283 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:37:30.286 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:38:00.287 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:38:30.288 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:39:00.290 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:39:30.292 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:40:00.293 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:40:30.295 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:41:00.297 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:41:30.298 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:42:00.300 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:42:30.302 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:43:00.304 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:43:30.305 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:44:00.306 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:44:30.308 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:45:00.311 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:45:30.313 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:46:00.314 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:46:30.316 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:47:00.318 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:47:30.320 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:48:00.321 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:48:30.323 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:49:00.325 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:49:30.326 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:50:00.328 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:50:30.330 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:51:00.331 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:51:30.333 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:52:00.335 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:52:30.336 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:53:00.337 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:53:30.339 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:54:00.339 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:54:30.340 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:55:00.341 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:55:30.342 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:56:00.343 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:56:30.345 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:57:00.346 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:57:30.348 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:58:00.350 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:58:30.353 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:59:00.355 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 07:59:30.357 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 08:00:00.359 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 08:00:30.360 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 08:01:00.361 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 08:01:30.373 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 08:02:00.374 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 08:02:30.376 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 08:03:00.378 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 08:03:30.378 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 08:04:00.380 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 08:04:27.136 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn27: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 08:04:27.156 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn30: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 08:04:27.272 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn29: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 08:04:27.274 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn31: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 08:04:27.567 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn20: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 08:04:27.570 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn32: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 08:04:30.381 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 08:04:34.740 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn21: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 08:04:34.741 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn33: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 08:04:39.607 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn25: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 08:04:39.608 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn34: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 08:04:45.355 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn26: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 08:04:45.356 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn35: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 08:04:48.806 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn28: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 08:04:48.807 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn36: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 08:04:50.752 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn22: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 08:04:50.752 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn37: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 08:04:52.139 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn24: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 08:04:52.139 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn38: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 08:04:58.553 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn23: url=jdbc:h2:mem:testdb user=FISH: (connection has passed maxLifetime)
+[DEBUG] 2019-11-12 08:04:58.554 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn39: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 08:05:00.382 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+[INFO ] 2019-11-12 16:10:00.023 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 2640 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:10:00.029 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:10:00.029 [main] StoryRepositoryTest - The following profiles are active: dev
+[DEBUG] 2019-11-12 16:10:01.307 [main] HikariConfig - Driver class org.h2.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@2626b418
+[DEBUG] 2019-11-12 16:10:01.916 [main] HikariConfig - HikariPool-1 - configuration:
+[DEBUG] 2019-11-12 16:10:01.919 [main] HikariConfig - allowPoolSuspension.............false
+[DEBUG] 2019-11-12 16:10:01.919 [main] HikariConfig - autoCommit......................true
+[DEBUG] 2019-11-12 16:10:01.919 [main] HikariConfig - catalog.........................none
+[DEBUG] 2019-11-12 16:10:01.920 [main] HikariConfig - connectionInitSql...............none
+[DEBUG] 2019-11-12 16:10:01.920 [main] HikariConfig - connectionTestQuery.............none
+[DEBUG] 2019-11-12 16:10:01.920 [main] HikariConfig - connectionTimeout...............30000
+[DEBUG] 2019-11-12 16:10:01.920 [main] HikariConfig - dataSource......................none
+[DEBUG] 2019-11-12 16:10:01.920 [main] HikariConfig - dataSourceClassName.............none
+[DEBUG] 2019-11-12 16:10:01.921 [main] HikariConfig - dataSourceJNDI..................none
+[DEBUG] 2019-11-12 16:10:01.921 [main] HikariConfig - dataSourceProperties............{password=<masked>}
+[DEBUG] 2019-11-12 16:10:01.921 [main] HikariConfig - driverClassName................."org.h2.Driver"
+[DEBUG] 2019-11-12 16:10:01.922 [main] HikariConfig - healthCheckProperties...........{}
+[DEBUG] 2019-11-12 16:10:01.922 [main] HikariConfig - healthCheckRegistry.............none
+[DEBUG] 2019-11-12 16:10:01.922 [main] HikariConfig - idleTimeout.....................600000
+[DEBUG] 2019-11-12 16:10:01.923 [main] HikariConfig - initializationFailTimeout.......1
+[DEBUG] 2019-11-12 16:10:01.923 [main] HikariConfig - isolateInternalQueries..........false
+[DEBUG] 2019-11-12 16:10:01.923 [main] HikariConfig - jdbcUrl.........................jdbc:h2:mem:testdb
+[DEBUG] 2019-11-12 16:10:01.923 [main] HikariConfig - leakDetectionThreshold..........0
+[DEBUG] 2019-11-12 16:10:01.923 [main] HikariConfig - maxLifetime.....................1800000
+[DEBUG] 2019-11-12 16:10:01.923 [main] HikariConfig - maximumPoolSize.................10
+[DEBUG] 2019-11-12 16:10:01.924 [main] HikariConfig - metricRegistry..................none
+[DEBUG] 2019-11-12 16:10:01.924 [main] HikariConfig - metricsTrackerFactory...........none
+[DEBUG] 2019-11-12 16:10:01.924 [main] HikariConfig - minimumIdle.....................10
+[DEBUG] 2019-11-12 16:10:01.924 [main] HikariConfig - password........................<masked>
+[DEBUG] 2019-11-12 16:10:01.924 [main] HikariConfig - poolName........................"HikariPool-1"
+[DEBUG] 2019-11-12 16:10:01.924 [main] HikariConfig - readOnly........................false
+[DEBUG] 2019-11-12 16:10:01.925 [main] HikariConfig - registerMbeans..................false
+[DEBUG] 2019-11-12 16:10:01.925 [main] HikariConfig - scheduledExecutor...............none
+[DEBUG] 2019-11-12 16:10:01.925 [main] HikariConfig - schema..........................none
+[DEBUG] 2019-11-12 16:10:01.925 [main] HikariConfig - threadFactory...................internal
+[DEBUG] 2019-11-12 16:10:01.925 [main] HikariConfig - transactionIsolation............default
+[DEBUG] 2019-11-12 16:10:01.925 [main] HikariConfig - username........................"fish"
+[DEBUG] 2019-11-12 16:10:01.925 [main] HikariConfig - validationTimeout...............5000
+[INFO ] 2019-11-12 16:10:01.925 [main] HikariDataSource - HikariPool-1 - Starting...
+[DEBUG] 2019-11-12 16:10:02.179 [main] HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=FISH
+[INFO ] 2019-11-12 16:10:02.181 [main] HikariDataSource - HikariPool-1 - Start completed.
+[DEBUG] 2019-11-12 16:10:02.285 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=1, active=1, idle=0, waiting=0)
+[DEBUG] 2019-11-12 16:10:02.295 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn1: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:10:02.296 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn2: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:10:02.296 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn3: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:10:02.298 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn4: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:10:02.299 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn5: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:10:02.299 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn6: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:10:02.300 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn7: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:10:02.300 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn8: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:10:02.301 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn9: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:10:02.301 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - After adding stats (total=10, active=1, idle=9, waiting=0)
+[INFO ] 2019-11-12 16:10:03.931 [main] StoryRepositoryTest - Started StoryRepositoryTest in 4.244 seconds (JVM running for 7.087)
+[INFO ] 2019-11-12 16:10:04.316 [SpringContextShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
+[DEBUG] 2019-11-12 16:10:04.316 [SpringContextShutdownHook] HikariPool - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 16:10:04.318 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn0: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:10:04.319 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn1: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:10:04.320 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn2: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:10:04.322 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn3: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:10:04.322 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn4: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:10:04.322 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn5: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:10:04.323 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn6: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:10:04.323 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn7: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:10:04.323 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn8: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:10:04.323 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn9: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:10:04.323 [SpringContextShutdownHook] HikariPool - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+[INFO ] 2019-11-12 16:10:04.324 [SpringContextShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 2019-11-12 16:12:06.481 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 3968 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:12:06.488 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:12:06.488 [main] StoryRepositoryTest - The following profiles are active: dev
+[DEBUG] 2019-11-12 16:12:07.633 [main] HikariConfig - Driver class org.h2.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@2626b418
+[DEBUG] 2019-11-12 16:12:08.185 [main] HikariConfig - HikariPool-1 - configuration:
+[DEBUG] 2019-11-12 16:12:08.188 [main] HikariConfig - allowPoolSuspension.............false
+[DEBUG] 2019-11-12 16:12:08.189 [main] HikariConfig - autoCommit......................true
+[DEBUG] 2019-11-12 16:12:08.189 [main] HikariConfig - catalog.........................none
+[DEBUG] 2019-11-12 16:12:08.189 [main] HikariConfig - connectionInitSql...............none
+[DEBUG] 2019-11-12 16:12:08.189 [main] HikariConfig - connectionTestQuery.............none
+[DEBUG] 2019-11-12 16:12:08.189 [main] HikariConfig - connectionTimeout...............30000
+[DEBUG] 2019-11-12 16:12:08.189 [main] HikariConfig - dataSource......................none
+[DEBUG] 2019-11-12 16:12:08.189 [main] HikariConfig - dataSourceClassName.............none
+[DEBUG] 2019-11-12 16:12:08.190 [main] HikariConfig - dataSourceJNDI..................none
+[DEBUG] 2019-11-12 16:12:08.190 [main] HikariConfig - dataSourceProperties............{password=<masked>}
+[DEBUG] 2019-11-12 16:12:08.190 [main] HikariConfig - driverClassName................."org.h2.Driver"
+[DEBUG] 2019-11-12 16:12:08.190 [main] HikariConfig - healthCheckProperties...........{}
+[DEBUG] 2019-11-12 16:12:08.190 [main] HikariConfig - healthCheckRegistry.............none
+[DEBUG] 2019-11-12 16:12:08.191 [main] HikariConfig - idleTimeout.....................600000
+[DEBUG] 2019-11-12 16:12:08.191 [main] HikariConfig - initializationFailTimeout.......1
+[DEBUG] 2019-11-12 16:12:08.191 [main] HikariConfig - isolateInternalQueries..........false
+[DEBUG] 2019-11-12 16:12:08.191 [main] HikariConfig - jdbcUrl.........................jdbc:h2:mem:testdb
+[DEBUG] 2019-11-12 16:12:08.191 [main] HikariConfig - leakDetectionThreshold..........0
+[DEBUG] 2019-11-12 16:12:08.191 [main] HikariConfig - maxLifetime.....................1800000
+[DEBUG] 2019-11-12 16:12:08.191 [main] HikariConfig - maximumPoolSize.................10
+[DEBUG] 2019-11-12 16:12:08.192 [main] HikariConfig - metricRegistry..................none
+[DEBUG] 2019-11-12 16:12:08.192 [main] HikariConfig - metricsTrackerFactory...........none
+[DEBUG] 2019-11-12 16:12:08.192 [main] HikariConfig - minimumIdle.....................10
+[DEBUG] 2019-11-12 16:12:08.192 [main] HikariConfig - password........................<masked>
+[DEBUG] 2019-11-12 16:12:08.192 [main] HikariConfig - poolName........................"HikariPool-1"
+[DEBUG] 2019-11-12 16:12:08.192 [main] HikariConfig - readOnly........................false
+[DEBUG] 2019-11-12 16:12:08.193 [main] HikariConfig - registerMbeans..................false
+[DEBUG] 2019-11-12 16:12:08.193 [main] HikariConfig - scheduledExecutor...............none
+[DEBUG] 2019-11-12 16:12:08.193 [main] HikariConfig - schema..........................none
+[DEBUG] 2019-11-12 16:12:08.193 [main] HikariConfig - threadFactory...................internal
+[DEBUG] 2019-11-12 16:12:08.193 [main] HikariConfig - transactionIsolation............default
+[DEBUG] 2019-11-12 16:12:08.193 [main] HikariConfig - username........................"fish"
+[DEBUG] 2019-11-12 16:12:08.193 [main] HikariConfig - validationTimeout...............5000
+[INFO ] 2019-11-12 16:12:08.193 [main] HikariDataSource - HikariPool-1 - Starting...
+[DEBUG] 2019-11-12 16:12:08.455 [main] HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=FISH
+[INFO ] 2019-11-12 16:12:08.456 [main] HikariDataSource - HikariPool-1 - Start completed.
+[DEBUG] 2019-11-12 16:12:08.559 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=1, active=1, idle=0, waiting=0)
+[DEBUG] 2019-11-12 16:12:08.563 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn1: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:12:08.564 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn2: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:12:08.565 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn3: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:12:08.565 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn4: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:12:08.566 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn5: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:12:08.573 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn6: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:12:08.573 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn7: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:12:08.574 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn8: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:12:08.575 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn9: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 16:12:08.575 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - After adding stats (total=10, active=1, idle=9, waiting=0)
+[INFO ] 2019-11-12 16:12:10.254 [main] StoryRepositoryTest - Started StoryRepositoryTest in 4.16 seconds (JVM running for 6.796)
+[INFO ] 2019-11-12 16:12:10.634 [SpringContextShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
+[DEBUG] 2019-11-12 16:12:10.634 [SpringContextShutdownHook] HikariPool - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 16:12:10.636 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn0: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:12:10.639 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn1: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:12:10.639 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn2: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:12:10.639 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn3: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:12:10.642 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn4: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:12:10.643 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn5: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:12:10.643 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn6: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:12:10.643 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn7: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:12:10.643 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn8: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:12:10.643 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn9: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 16:12:10.644 [SpringContextShutdownHook] HikariPool - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+[INFO ] 2019-11-12 16:12:10.644 [SpringContextShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 2019-11-12 16:12:31.553 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 8544 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:12:31.561 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:12:31.561 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:12:35.073 [main] StoryRepositoryTest - Started StoryRepositoryTest in 3.873 seconds (JVM running for 6.686)
+[INFO ] 2019-11-12 16:14:08.420 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 14084 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:14:08.427 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:14:08.427 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:14:12.175 [main] StoryRepositoryTest - Started StoryRepositoryTest in 4.086 seconds (JVM running for 6.999)
+[INFO ] 2019-11-12 16:14:58.180 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 11304 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:14:58.186 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:14:58.186 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:15:01.803 [main] StoryRepositoryTest - Started StoryRepositoryTest in 3.963 seconds (JVM running for 6.585)
+[INFO ] 2019-11-12 16:15:41.754 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 13820 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:15:41.759 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:15:41.760 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:15:45.395 [main] StoryRepositoryTest - Started StoryRepositoryTest in 3.964 seconds (JVM running for 6.573)
+[INFO ] 2019-11-12 16:16:48.860 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 11640 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:16:48.865 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:16:48.866 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:16:53.112 [main] StoryRepositoryTest - Started StoryRepositoryTest in 4.649 seconds (JVM running for 7.495)
+[INFO ] 2019-11-12 16:18:36.588 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 14020 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:18:36.595 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:18:36.595 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:18:40.156 [main] StoryRepositoryTest - Started StoryRepositoryTest in 3.922 seconds (JVM running for 6.697)
+[INFO ] 2019-11-12 16:19:11.529 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 17288 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:19:11.557 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:19:11.557 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:19:15.820 [main] StoryRepositoryTest - Started StoryRepositoryTest in 4.732 seconds (JVM running for 8.399)
+[INFO ] 2019-11-12 16:20:08.291 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 3596 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:20:08.305 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:20:08.305 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:20:12.356 [main] StoryRepositoryTest - Started StoryRepositoryTest in 4.406 seconds (JVM running for 7.247)
+[INFO ] 2019-11-12 16:21:33.974 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 12204 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:21:33.988 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:21:33.989 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:21:37.500 [main] StoryRepositoryTest - Started StoryRepositoryTest in 3.842 seconds (JVM running for 6.451)
+[INFO ] 2019-11-12 16:22:27.719 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 15568 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:22:27.723 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:22:27.724 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:22:31.381 [main] StoryRepositoryTest - Started StoryRepositoryTest in 3.983 seconds (JVM running for 6.773)
+[INFO ] 2019-11-12 16:24:10.671 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 3812 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:24:10.675 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:24:10.675 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:24:14.250 [main] StoryRepositoryTest - Started StoryRepositoryTest in 3.868 seconds (JVM running for 6.436)
+[INFO ] 2019-11-12 16:25:48.113 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 11128 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:25:48.119 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:25:48.119 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:25:51.435 [main] StoryRepositoryTest - Started StoryRepositoryTest in 3.614 seconds (JVM running for 6.243)
+[INFO ] 2019-11-12 16:26:45.959 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 1952 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:26:45.964 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:26:45.964 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:26:49.610 [main] StoryRepositoryTest - Started StoryRepositoryTest in 3.975 seconds (JVM running for 6.607)
+[INFO ] 2019-11-12 16:27:30.908 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 15956 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:27:30.914 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:27:30.914 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:27:34.530 [main] StoryRepositoryTest - Started StoryRepositoryTest in 3.931 seconds (JVM running for 6.499)
+[INFO ] 2019-11-12 16:28:01.711 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 14904 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:28:01.717 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:28:01.717 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:28:05.299 [main] StoryRepositoryTest - Started StoryRepositoryTest in 3.909 seconds (JVM running for 6.509)
+[INFO ] 2019-11-12 16:28:27.911 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 13092 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:28:27.917 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:28:27.917 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:28:31.492 [main] StoryRepositoryTest - Started StoryRepositoryTest in 3.89 seconds (JVM running for 6.663)
+[INFO ] 2019-11-12 16:32:57.566 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 15960 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:32:57.577 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:32:57.578 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:33:01.974 [main] StoryRepositoryTest - Started StoryRepositoryTest in 4.776 seconds (JVM running for 7.849)
+[INFO ] 2019-11-12 16:44:51.268 [main] StoryControllerTest - Starting StoryControllerTest on Mokaddesh-latitude with PID 8948 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:44:51.274 [main] StoryControllerTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:44:51.275 [main] StoryControllerTest - The following profiles are active: dev
+[INFO ] 2019-11-12 16:47:39.446 [main] StoryControllerTest - Starting StoryControllerTest on Mokaddesh-latitude with PID 5236 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 16:47:39.451 [main] StoryControllerTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 16:47:39.452 [main] StoryControllerTest - The following profiles are active: dev
+[INFO ] 2019-11-12 17:01:25.434 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 15076 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 17:01:25.440 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 17:01:25.440 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 17:01:30.040 [main] StoryRepositoryTest - Started StoryRepositoryTest in 4.972 seconds (JVM running for 8.138)
+[INFO ] 2019-11-12 17:02:05.848 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 13464 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 17:02:05.855 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 17:02:05.855 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 17:02:11.034 [main] StoryRepositoryTest - Started StoryRepositoryTest in 5.55 seconds (JVM running for 9.032)
+[INFO ] 2019-11-12 17:12:24.319 [main] StoryRepositoryTest - Starting StoryRepositoryTest on Mokaddesh-latitude with PID 9896 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 17:12:24.325 [main] StoryRepositoryTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 17:12:24.326 [main] StoryRepositoryTest - The following profiles are active: dev
+[INFO ] 2019-11-12 17:12:30.139 [main] StoryControllerTest - Starting StoryControllerTest on Mokaddesh-latitude with PID 10772 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 17:12:30.148 [main] StoryControllerTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 17:12:30.149 [main] StoryControllerTest - The following profiles are active: dev
+[INFO ] 2019-11-12 17:12:33.116 [main] StoryRepositoryTest - Started StoryRepositoryTest in 9.658 seconds (JVM running for 13.854)
+[DEBUG] 2019-11-12 17:12:36.816 [main] HikariConfig - Driver class org.h2.Driver found in Thread context class loader TomcatEmbeddedWebappClassLoader
+  context: ROOT
+  delegate: true
+----------> Parent Classloader:
+jdk.internal.loader.ClassLoaders$AppClassLoader@2626b418
+
+[DEBUG] 2019-11-12 17:12:36.884 [main] HikariConfig - HikariPool-1 - configuration:
+[DEBUG] 2019-11-12 17:12:36.887 [main] HikariConfig - allowPoolSuspension.............false
+[DEBUG] 2019-11-12 17:12:36.887 [main] HikariConfig - autoCommit......................true
+[DEBUG] 2019-11-12 17:12:36.887 [main] HikariConfig - catalog.........................none
+[DEBUG] 2019-11-12 17:12:36.887 [main] HikariConfig - connectionInitSql...............none
+[DEBUG] 2019-11-12 17:12:36.887 [main] HikariConfig - connectionTestQuery.............none
+[DEBUG] 2019-11-12 17:12:36.888 [main] HikariConfig - connectionTimeout...............30000
+[DEBUG] 2019-11-12 17:12:36.888 [main] HikariConfig - dataSource......................none
+[DEBUG] 2019-11-12 17:12:36.888 [main] HikariConfig - dataSourceClassName.............none
+[DEBUG] 2019-11-12 17:12:36.888 [main] HikariConfig - dataSourceJNDI..................none
+[DEBUG] 2019-11-12 17:12:36.889 [main] HikariConfig - dataSourceProperties............{password=<masked>}
+[DEBUG] 2019-11-12 17:12:36.890 [main] HikariConfig - driverClassName................."org.h2.Driver"
+[DEBUG] 2019-11-12 17:12:36.890 [main] HikariConfig - healthCheckProperties...........{}
+[DEBUG] 2019-11-12 17:12:36.890 [main] HikariConfig - healthCheckRegistry.............none
+[DEBUG] 2019-11-12 17:12:36.890 [main] HikariConfig - idleTimeout.....................600000
+[DEBUG] 2019-11-12 17:12:36.891 [main] HikariConfig - initializationFailTimeout.......1
+[DEBUG] 2019-11-12 17:12:36.891 [main] HikariConfig - isolateInternalQueries..........false
+[DEBUG] 2019-11-12 17:12:36.891 [main] HikariConfig - jdbcUrl.........................jdbc:h2:mem:testdb
+[DEBUG] 2019-11-12 17:12:36.892 [main] HikariConfig - leakDetectionThreshold..........0
+[DEBUG] 2019-11-12 17:12:36.892 [main] HikariConfig - maxLifetime.....................1800000
+[DEBUG] 2019-11-12 17:12:36.892 [main] HikariConfig - maximumPoolSize.................10
+[DEBUG] 2019-11-12 17:12:36.892 [main] HikariConfig - metricRegistry..................none
+[DEBUG] 2019-11-12 17:12:36.892 [main] HikariConfig - metricsTrackerFactory...........none
+[DEBUG] 2019-11-12 17:12:36.892 [main] HikariConfig - minimumIdle.....................10
+[DEBUG] 2019-11-12 17:12:36.892 [main] HikariConfig - password........................<masked>
+[DEBUG] 2019-11-12 17:12:36.892 [main] HikariConfig - poolName........................"HikariPool-1"
+[DEBUG] 2019-11-12 17:12:36.893 [main] HikariConfig - readOnly........................false
+[DEBUG] 2019-11-12 17:12:36.893 [main] HikariConfig - registerMbeans..................false
+[DEBUG] 2019-11-12 17:12:36.893 [main] HikariConfig - scheduledExecutor...............none
+[DEBUG] 2019-11-12 17:12:36.893 [main] HikariConfig - schema..........................none
+[DEBUG] 2019-11-12 17:12:36.893 [main] HikariConfig - threadFactory...................internal
+[DEBUG] 2019-11-12 17:12:36.893 [main] HikariConfig - transactionIsolation............default
+[DEBUG] 2019-11-12 17:12:36.894 [main] HikariConfig - username........................"fish"
+[DEBUG] 2019-11-12 17:12:36.895 [main] HikariConfig - validationTimeout...............5000
+[INFO ] 2019-11-12 17:12:36.895 [main] HikariDataSource - HikariPool-1 - Starting...
+[DEBUG] 2019-11-12 17:12:37.288 [main] HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=FISH
+[INFO ] 2019-11-12 17:12:37.290 [main] HikariDataSource - HikariPool-1 - Start completed.
+[DEBUG] 2019-11-12 17:12:37.396 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=1, active=0, idle=1, waiting=0)
+[DEBUG] 2019-11-12 17:12:37.409 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn1: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:12:37.410 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn2: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:12:37.410 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn3: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:12:37.411 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn4: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:12:37.412 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn5: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:12:37.412 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn6: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:12:37.413 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn7: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:12:37.413 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn8: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:12:37.413 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn9: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:12:37.414 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 17:12:40.564 [main] JWTRequestFilter - Filter 'JWTRequestFilter' configured for use
+[INFO ] 2019-11-12 17:12:43.646 [main] StoryControllerTest - Started StoryControllerTest in 13.963 seconds (JVM running for 20.813)
+[INFO ] 2019-11-12 17:12:44.618 [SpringContextShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
+[DEBUG] 2019-11-12 17:12:44.618 [SpringContextShutdownHook] HikariPool - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 17:12:44.620 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn0: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:12:44.620 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn1: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:12:44.620 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn2: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:12:44.620 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn3: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:12:44.621 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn4: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:12:44.621 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn5: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:12:44.621 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn6: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:12:44.621 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn7: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:12:44.623 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn8: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:12:44.624 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn9: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:12:44.630 [SpringContextShutdownHook] HikariPool - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+[INFO ] 2019-11-12 17:12:44.630 [SpringContextShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 2019-11-12 17:13:30.490 [main] StoryControllerTest - Starting StoryControllerTest on Mokaddesh-latitude with PID 15684 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 17:13:30.497 [main] StoryControllerTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 17:13:30.498 [main] StoryControllerTest - The following profiles are active: dev
+[DEBUG] 2019-11-12 17:13:35.275 [main] HikariConfig - Driver class org.h2.Driver found in Thread context class loader TomcatEmbeddedWebappClassLoader
+  context: ROOT
+  delegate: true
+----------> Parent Classloader:
+jdk.internal.loader.ClassLoaders$AppClassLoader@2626b418
+
+[DEBUG] 2019-11-12 17:13:35.406 [main] HikariConfig - HikariPool-1 - configuration:
+[DEBUG] 2019-11-12 17:13:35.410 [main] HikariConfig - allowPoolSuspension.............false
+[DEBUG] 2019-11-12 17:13:35.410 [main] HikariConfig - autoCommit......................true
+[DEBUG] 2019-11-12 17:13:35.410 [main] HikariConfig - catalog.........................none
+[DEBUG] 2019-11-12 17:13:35.410 [main] HikariConfig - connectionInitSql...............none
+[DEBUG] 2019-11-12 17:13:35.410 [main] HikariConfig - connectionTestQuery.............none
+[DEBUG] 2019-11-12 17:13:35.411 [main] HikariConfig - connectionTimeout...............30000
+[DEBUG] 2019-11-12 17:13:35.411 [main] HikariConfig - dataSource......................none
+[DEBUG] 2019-11-12 17:13:35.411 [main] HikariConfig - dataSourceClassName.............none
+[DEBUG] 2019-11-12 17:13:35.411 [main] HikariConfig - dataSourceJNDI..................none
+[DEBUG] 2019-11-12 17:13:35.411 [main] HikariConfig - dataSourceProperties............{password=<masked>}
+[DEBUG] 2019-11-12 17:13:35.412 [main] HikariConfig - driverClassName................."org.h2.Driver"
+[DEBUG] 2019-11-12 17:13:35.413 [main] HikariConfig - healthCheckProperties...........{}
+[DEBUG] 2019-11-12 17:13:35.413 [main] HikariConfig - healthCheckRegistry.............none
+[DEBUG] 2019-11-12 17:13:35.413 [main] HikariConfig - idleTimeout.....................600000
+[DEBUG] 2019-11-12 17:13:35.413 [main] HikariConfig - initializationFailTimeout.......1
+[DEBUG] 2019-11-12 17:13:35.414 [main] HikariConfig - isolateInternalQueries..........false
+[DEBUG] 2019-11-12 17:13:35.414 [main] HikariConfig - jdbcUrl.........................jdbc:h2:mem:testdb
+[DEBUG] 2019-11-12 17:13:35.414 [main] HikariConfig - leakDetectionThreshold..........0
+[DEBUG] 2019-11-12 17:13:35.414 [main] HikariConfig - maxLifetime.....................1800000
+[DEBUG] 2019-11-12 17:13:35.414 [main] HikariConfig - maximumPoolSize.................10
+[DEBUG] 2019-11-12 17:13:35.414 [main] HikariConfig - metricRegistry..................none
+[DEBUG] 2019-11-12 17:13:35.414 [main] HikariConfig - metricsTrackerFactory...........none
+[DEBUG] 2019-11-12 17:13:35.415 [main] HikariConfig - minimumIdle.....................10
+[DEBUG] 2019-11-12 17:13:35.415 [main] HikariConfig - password........................<masked>
+[DEBUG] 2019-11-12 17:13:35.415 [main] HikariConfig - poolName........................"HikariPool-1"
+[DEBUG] 2019-11-12 17:13:35.418 [main] HikariConfig - readOnly........................false
+[DEBUG] 2019-11-12 17:13:35.420 [main] HikariConfig - registerMbeans..................false
+[DEBUG] 2019-11-12 17:13:35.421 [main] HikariConfig - scheduledExecutor...............none
+[DEBUG] 2019-11-12 17:13:35.421 [main] HikariConfig - schema..........................none
+[DEBUG] 2019-11-12 17:13:35.421 [main] HikariConfig - threadFactory...................internal
+[DEBUG] 2019-11-12 17:13:35.421 [main] HikariConfig - transactionIsolation............default
+[DEBUG] 2019-11-12 17:13:35.421 [main] HikariConfig - username........................"fish"
+[DEBUG] 2019-11-12 17:13:35.421 [main] HikariConfig - validationTimeout...............5000
+[INFO ] 2019-11-12 17:13:35.425 [main] HikariDataSource - HikariPool-1 - Starting...
+[DEBUG] 2019-11-12 17:13:35.786 [main] HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=FISH
+[INFO ] 2019-11-12 17:13:35.788 [main] HikariDataSource - HikariPool-1 - Start completed.
+[DEBUG] 2019-11-12 17:13:35.890 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=1, active=0, idle=1, waiting=0)
+[DEBUG] 2019-11-12 17:13:35.894 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn1: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:13:35.894 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn2: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:13:35.896 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn3: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:13:35.896 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn4: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:13:35.898 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn5: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:13:35.899 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn6: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:13:35.899 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn7: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:13:35.900 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn8: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:13:35.900 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn9: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:13:35.900 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 17:13:39.001 [main] JWTRequestFilter - Filter 'JWTRequestFilter' configured for use
+[INFO ] 2019-11-12 17:13:43.303 [main] StoryControllerTest - Started StoryControllerTest in 13.22 seconds (JVM running for 16.881)
+[INFO ] 2019-11-12 17:13:43.819 [SpringContextShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
+[DEBUG] 2019-11-12 17:13:43.820 [SpringContextShutdownHook] HikariPool - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 17:13:43.824 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn0: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:13:43.824 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn1: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:13:43.825 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn2: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:13:43.827 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn3: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:13:43.831 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn4: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:13:43.831 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn5: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:13:43.833 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn6: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:13:43.833 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn7: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:13:43.833 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn8: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:13:43.833 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn9: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:13:43.834 [SpringContextShutdownHook] HikariPool - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+[INFO ] 2019-11-12 17:13:43.834 [SpringContextShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 2019-11-12 17:13:58.548 [main] StoryControllerTest - Starting StoryControllerTest on Mokaddesh-latitude with PID 3272 (started by Mokaddesh Rashid in C:\Users\Mokaddesh Rashid\Desktop\Cefalo\assignment)
+[DEBUG] 2019-11-12 17:13:58.556 [main] StoryControllerTest - Running with Spring Boot v2.2.0.RELEASE, Spring v5.2.0.RELEASE
+[INFO ] 2019-11-12 17:13:58.557 [main] StoryControllerTest - The following profiles are active: dev
+[DEBUG] 2019-11-12 17:14:01.679 [main] HikariConfig - Driver class org.h2.Driver found in Thread context class loader TomcatEmbeddedWebappClassLoader
+  context: ROOT
+  delegate: true
+----------> Parent Classloader:
+jdk.internal.loader.ClassLoaders$AppClassLoader@2626b418
+
+[DEBUG] 2019-11-12 17:14:01.723 [main] HikariConfig - HikariPool-1 - configuration:
+[DEBUG] 2019-11-12 17:14:01.726 [main] HikariConfig - allowPoolSuspension.............false
+[DEBUG] 2019-11-12 17:14:01.726 [main] HikariConfig - autoCommit......................true
+[DEBUG] 2019-11-12 17:14:01.726 [main] HikariConfig - catalog.........................none
+[DEBUG] 2019-11-12 17:14:01.726 [main] HikariConfig - connectionInitSql...............none
+[DEBUG] 2019-11-12 17:14:01.726 [main] HikariConfig - connectionTestQuery.............none
+[DEBUG] 2019-11-12 17:14:01.727 [main] HikariConfig - connectionTimeout...............30000
+[DEBUG] 2019-11-12 17:14:01.727 [main] HikariConfig - dataSource......................none
+[DEBUG] 2019-11-12 17:14:01.727 [main] HikariConfig - dataSourceClassName.............none
+[DEBUG] 2019-11-12 17:14:01.727 [main] HikariConfig - dataSourceJNDI..................none
+[DEBUG] 2019-11-12 17:14:01.728 [main] HikariConfig - dataSourceProperties............{password=<masked>}
+[DEBUG] 2019-11-12 17:14:01.728 [main] HikariConfig - driverClassName................."org.h2.Driver"
+[DEBUG] 2019-11-12 17:14:01.728 [main] HikariConfig - healthCheckProperties...........{}
+[DEBUG] 2019-11-12 17:14:01.729 [main] HikariConfig - healthCheckRegistry.............none
+[DEBUG] 2019-11-12 17:14:01.729 [main] HikariConfig - idleTimeout.....................600000
+[DEBUG] 2019-11-12 17:14:01.729 [main] HikariConfig - initializationFailTimeout.......1
+[DEBUG] 2019-11-12 17:14:01.729 [main] HikariConfig - isolateInternalQueries..........false
+[DEBUG] 2019-11-12 17:14:01.729 [main] HikariConfig - jdbcUrl.........................jdbc:h2:mem:testdb
+[DEBUG] 2019-11-12 17:14:01.729 [main] HikariConfig - leakDetectionThreshold..........0
+[DEBUG] 2019-11-12 17:14:01.730 [main] HikariConfig - maxLifetime.....................1800000
+[DEBUG] 2019-11-12 17:14:01.730 [main] HikariConfig - maximumPoolSize.................10
+[DEBUG] 2019-11-12 17:14:01.730 [main] HikariConfig - metricRegistry..................none
+[DEBUG] 2019-11-12 17:14:01.730 [main] HikariConfig - metricsTrackerFactory...........none
+[DEBUG] 2019-11-12 17:14:01.730 [main] HikariConfig - minimumIdle.....................10
+[DEBUG] 2019-11-12 17:14:01.730 [main] HikariConfig - password........................<masked>
+[DEBUG] 2019-11-12 17:14:01.730 [main] HikariConfig - poolName........................"HikariPool-1"
+[DEBUG] 2019-11-12 17:14:01.730 [main] HikariConfig - readOnly........................false
+[DEBUG] 2019-11-12 17:14:01.731 [main] HikariConfig - registerMbeans..................false
+[DEBUG] 2019-11-12 17:14:01.731 [main] HikariConfig - scheduledExecutor...............none
+[DEBUG] 2019-11-12 17:14:01.731 [main] HikariConfig - schema..........................none
+[DEBUG] 2019-11-12 17:14:01.731 [main] HikariConfig - threadFactory...................internal
+[DEBUG] 2019-11-12 17:14:01.731 [main] HikariConfig - transactionIsolation............default
+[DEBUG] 2019-11-12 17:14:01.731 [main] HikariConfig - username........................"fish"
+[DEBUG] 2019-11-12 17:14:01.731 [main] HikariConfig - validationTimeout...............5000
+[INFO ] 2019-11-12 17:14:01.731 [main] HikariDataSource - HikariPool-1 - Starting...
+[DEBUG] 2019-11-12 17:14:01.999 [main] HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=FISH
+[INFO ] 2019-11-12 17:14:02.001 [main] HikariDataSource - HikariPool-1 - Start completed.
+[DEBUG] 2019-11-12 17:14:02.103 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Pool stats (total=1, active=0, idle=1, waiting=0)
+[DEBUG] 2019-11-12 17:14:02.111 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn1: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:14:02.112 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn2: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:14:02.113 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn3: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:14:02.114 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn4: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:14:02.114 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn5: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:14:02.115 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn6: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:14:02.115 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn7: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:14:02.116 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn8: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:14:02.116 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - Added connection conn9: url=jdbc:h2:mem:testdb user=FISH
+[DEBUG] 2019-11-12 17:14:02.117 [HikariPool-1 connection adder] HikariPool - HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 17:14:04.431 [main] JWTRequestFilter - Filter 'JWTRequestFilter' configured for use
+[INFO ] 2019-11-12 17:14:07.160 [main] StoryControllerTest - Started StoryControllerTest in 8.954 seconds (JVM running for 11.512)
+[INFO ] 2019-11-12 17:14:08.064 [SpringContextShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
+[DEBUG] 2019-11-12 17:14:08.064 [SpringContextShutdownHook] HikariPool - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+[DEBUG] 2019-11-12 17:14:08.066 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn0: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:14:08.066 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn1: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:14:08.067 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn2: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:14:08.068 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn3: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:14:08.068 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn4: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:14:08.069 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn5: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:14:08.069 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn6: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:14:08.069 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn7: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:14:08.069 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn8: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:14:08.070 [HikariPool-1 connection closer] PoolBase - HikariPool-1 - Closing connection conn9: url=jdbc:h2:mem:testdb user=FISH: (connection evicted)
+[DEBUG] 2019-11-12 17:14:08.072 [SpringContextShutdownHook] HikariPool - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+[INFO ] 2019-11-12 17:14:08.072 [SpringContextShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
