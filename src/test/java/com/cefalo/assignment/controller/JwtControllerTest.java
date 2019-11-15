@@ -26,6 +26,7 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import static com.cefalo.assignment.TestHelper.getRestTemplate;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
@@ -57,11 +58,9 @@ public class JwtControllerTest {
         TestRestTemplate testRestTemplate = new TestRestTemplate();
 
         beforePost("fish", "pass");
-
         ResponseEntity<AuthenticationResponse> result
                 = testRestTemplate.postForEntity(uri, request, AuthenticationResponse.class);
 
-        //Verify request succeed
         Assert.assertEquals(200, result.getStatusCodeValue());
         Assert.assertNotNull(result.getBody());
         Assert.assertNotNull(result.getBody().getJwt());
@@ -71,7 +70,7 @@ public class JwtControllerTest {
     @Test//(expected = HttpClientErrorException.Unauthorized.class)
     public void postRequestForJWTToken_shouldGet401() throws Exception{
         RestTemplate restTemplate = getRestTemplate();
-        beforePost("fish", "love");
+        beforePost("fish", "love"); ///password for fish is pass 'see data.sql'
         assertThrows(HttpClientErrorException.Unauthorized.class, () ->
                 restTemplate.postForEntity(uri, request, AuthenticationResponse.class));
     }
@@ -80,7 +79,7 @@ public class JwtControllerTest {
     @Test
     public void postRequestForJWTToken_shouldGet422() throws Exception{
         RestTemplate restTemplate = getRestTemplate();
-        beforePost("fish", null);
+        beforePost("fish", null); //it will give a validation error as password should not be null
         assertThrows(HttpClientErrorException.UnprocessableEntity.class, () ->
                 restTemplate.postForEntity(uri, request, AuthenticationResponse.class));
     }
@@ -94,24 +93,17 @@ public class JwtControllerTest {
                 restTemplate.postForEntity(uri, request, AuthenticationResponse.class));
     }
 
-    private RestTemplate getRestTemplate() {
-        /**without this part there will be a a error for multiple authentication retry
-         * The problem is due to chunking and subsequent retry mechanism incase of authentication.
-         * */
-        SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
-        requestFactory.setOutputStreaming(false);
-        return new RestTemplate(requestFactory);
-    }
+
 
     private void beforePost(String userName, String password) throws URISyntaxException {
         String baseUrl = "http://localhost:" + randomServerPort + "/api/authenticate";
         uri = new URI(baseUrl);
-        auth = new AuthenticationRequest();
-        auth.setUserName(userName);
-        auth.setPassword(password);
+        auth = new AuthenticationRequest(userName, password);
         HttpHeaders headers = new HttpHeaders();
+
         headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
         headers.add("Content-Type", MediaType.APPLICATION_JSON_VALUE);
+
         request = new HttpEntity<>(auth, headers);
     }
 }

@@ -28,9 +28,8 @@ public class JWTController {
     @PostMapping
     public ResponseEntity<?> getAuthToken(@RequestBody @Valid AuthenticationRequest authenticationRequest)
             throws BadCredentialsException, MethodArgumentNotValidException {
-        ResponseEntity responseEntity = responseEntityCreation.buildResponseEntity(
-                authService.createAuthToken(authenticationRequest), HttpStatus.OK);
 
-        return responseEntity;
+        return responseEntityCreation.buildResponseEntity(
+                authService.createAuthToken(authenticationRequest), HttpStatus.OK);
     }
 }

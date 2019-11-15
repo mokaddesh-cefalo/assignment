@@ -20,46 +20,9 @@ import java.util.*;
 import static com.cefalo.assignment.TestHelper.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@Slf4j
+/*@Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)*/
 public class StoryControllerTest {
-
-    @LocalServerPort
-    int randomServerPort;
-
-    @DisplayName("creator can patch stories")
-    @Test
-    public void deleteAStory_GetStatus200() throws Exception {
-        RestTemplate restTemplate = getRestTemplate();
-        String baseUrl = "http://localhost:" + randomServerPort + "/api/stories/{id}";
-        String token = generateTokenForUserNameAndPassword("fish", "pass", randomServerPort);
-        HttpHeaders httpHeaders = new HttpHeaders();
-
-        httpHeaders.add("Authorization", token);
-        HttpEntity request = new HttpEntity<>(httpHeaders);
-
-        Map<String, String> params = new HashMap<>();
-        params.put("id", "1");
-
-        restTemplate.exchange(baseUrl, HttpMethod.DELETE, request, void.class, params);
-    }
-
-    @DisplayName("creator can patch stories")
-    @Test(expected = HttpClientErrorException.Unauthorized.class)
-    public void deleteAStory_GetStatus401() throws Exception {
-        RestTemplate restTemplate = getRestTemplate();
-        String baseUrl = "http://localhost:" + randomServerPort + "/api/stories/{id}";
-        String token = generateTokenForUserNameAndPassword("i", "love", randomServerPort);
-        HttpHeaders httpHeaders = new HttpHeaders();
-
-        httpHeaders.add("Authorization", token);
-        HttpEntity request = new HttpEntity<>(httpHeaders);
-
-        Map<String, String> params = new HashMap<>();
-        params.put("id", "1");
-
-        restTemplate.exchange(baseUrl, HttpMethod.DELETE, request, void.class, params);
-    }
 
 }

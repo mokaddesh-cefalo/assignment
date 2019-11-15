@@ -9,13 +9,18 @@ import com.cefalo.assignment.repositories.StoryRepository;
 import com.cefalo.assignment.security.LoggedInUserInfo;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.modules.junit4.PowerMockRunnerDelegate;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
 
@@ -28,7 +33,7 @@ import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({LoggedInUserInfo.class, StoryServiceImpl.class})
-public class TestPostNewMethod {
+public class PowerMockRunnerUnitTestForStory {
 
     StoryServiceImpl storyService;
     @Mock
@@ -51,9 +56,10 @@ public class TestPostNewMethod {
         Story story = new Story("t1", "b1", stringToDate("24 nov 1994"));
 
         when(storyRepository.save(story)).thenReturn(story);
+
         Story result = storyService.saveNewStoryObject(story);
         result.setCreatorName();
-        System.out.println(result.getCreatorName());
+        assertEquals(story, result);
     }
 
     @DisplayName("checkAuthorityThenUpdateStoryById")

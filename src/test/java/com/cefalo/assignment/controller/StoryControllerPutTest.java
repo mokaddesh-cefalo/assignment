@@ -62,7 +62,7 @@ public class StoryControllerPutTest {
     }
 
     private void beforePutPutObject(String... headers) throws URISyntaxException{
-        String baseUrl = "http://localhost:" + randomServerPort + "/api/stories/1";
+        String baseUrl = "http://localhost:" + randomServerPort + "/api/stories/5";
         Date publishedDate = stringToDate("24 nov 1994");
         Story story = new Story("new title", "new body", publishedDate);
         uri = new URI(baseUrl);

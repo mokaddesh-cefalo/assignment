@@ -54,7 +54,6 @@ public class StoryControllerPostTest {
         String baseUrl = "http://localhost:" + randomServerPort + "/api/stories";
         Date publishedDate = stringToDate("24 nov 1994");
         Story story = new Story("new title", "new body", publishedDate);
-        story.setId(7L);
 
         uri = new URI(baseUrl);
         setHttpEntityForPOSTStory(story, headers);

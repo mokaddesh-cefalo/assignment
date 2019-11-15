@@ -25,7 +25,7 @@ import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {StoryServiceImpl.class})
-public class StoryServiceImplTest {
+public class SpringRunnerUnitTest {
 
     @MockBean
     private StoryRepository storyRepository;
@@ -87,21 +87,4 @@ public class StoryServiceImplTest {
         assertEquals(oldStory.getPublishedDate(), newStory.getPublishedDate());
         assertNotEquals(oldStory.getTitle(), newStory.getTitle());
     }
-
-
-    /*@Override
-    public Optional<Story> checkAuthorityThenUpdateStoryById
-            (Long storyId, Story newVersionOfStory,Boolean isPatchUpdate)
-            throws EntityNotFoundException, UnAuthorizedRequestException, IllegalAccessException {
-
-        newVersionOfStory.setId(storyId);
-        Optional<Story> olderVersionOfStory = storyRepository.findById(storyId);
-
-        throwExceptionForInvalidStoryUpdateorDeleteRequest(storyId, olderVersionOfStory.orElse(null));
-
-        if(isPatchUpdate)
-            newVersionOfStory = updateOldStoryByNewStory(olderVersionOfStory.get(), newVersionOfStory);
-
-        return Optional.ofNullable(storyRepository.save(newVersionOfStory));
-    }*/
 }

@@ -26,6 +26,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import static com.cefalo.assignment.TestHelper.getRestTemplate;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Slf4j
@@ -49,11 +50,12 @@ public class UserControllerTest {
         this.testReporter = testReporter;
     }
 
+    @DisplayName("All of the stories created by the user fish")
     @Test
-    public void getUserStories_shouldGet200()throws Exception{
+    public void getUserStories_shouldGet200() throws Exception{
         TestRestTemplate testRestTemplate = new TestRestTemplate();
-
         String url = "http://localhost:" + randomServerPort + "/api/users/fish/stories";
+
         setHttpEntity();
         ResponseEntity<Story[]> result
                 = testRestTemplate.exchange(url, HttpMethod.GET, request,Story[].class);
@@ -62,11 +64,12 @@ public class UserControllerTest {
         Assert.assertNotNull(result.getBody());
     }
 
+    @DisplayName(" created a new user")
     @Test
     public void postNewUser_shouldGet201()throws Exception{
         TestRestTemplate testRestTemplate = new TestRestTemplate();
-
         String userName = "money", password = "pass";
+
         beforePost(userName, password, "");
 
         ResponseEntity<User> result
@@ -82,6 +85,7 @@ public class UserControllerTest {
     @Test
     public void postNewUser_shouldGet422() throws Exception {
         RestTemplate restTemplate = getRestTemplate();
+
         beforePost("fish", "pass", "");
         assertThrows(HttpClientErrorException.UnprocessableEntity.class, () ->
                 restTemplate.postForEntity(uri, request, User.class));
@@ -91,6 +95,7 @@ public class UserControllerTest {
     @Test
     public void postNewUserWithNullUserName_shouldGet422() throws Exception {
         RestTemplate restTemplate = getRestTemplate();
+
         beforePost(null, "pass", "");
         assertThrows(HttpClientErrorException.UnprocessableEntity.class, () ->
                 restTemplate.postForEntity(uri, request, User.class));
@@ -100,36 +105,22 @@ public class UserControllerTest {
     @Test
     public void postNewUserWithNullPassword_shouldGet422() throws Exception {
         RestTemplate restTemplate = getRestTemplate();
+
         beforePost("fish", null, "");
         assertThrows(HttpClientErrorException.UnprocessableEntity.class, () ->
                 restTemplate.postForEntity(uri, request, User.class));
     }
 
-
-    private RestTemplate getRestTemplate() {
-        /**without this part there will be a a error for multiple authentication retry
-         * The problem is due to chunking and subsequent retry mechanism incase of authentication.
-         * */
-        SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
-        requestFactory.setOutputStreaming(false);
-        return new RestTemplate(requestFactory);
-    }
-
     private void beforePost(String userName, String password, String urlExtention) throws URISyntaxException {
         String baseUrl = "http://localhost:" + randomServerPort + "/api/users" + urlExtention;
         uri = new URI(baseUrl);
-        setUser(userName, password);
-    }
-
-    private void setUser(String userName, String password) {
-        user = new User();
-        user.setUserName(userName);
-        user.setPassword(password);
+        user = new User(userName, password);
         setHttpEntity();
     }
 
     private void setHttpEntity() {
         HttpHeaders headers = new HttpHeaders();
+
         headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
         headers.add("Content-Type", MediaType.APPLICATION_JSON_VALUE);
         request = new HttpEntity<>(user, headers);

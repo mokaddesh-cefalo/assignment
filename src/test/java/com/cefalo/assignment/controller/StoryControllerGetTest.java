@@ -34,7 +34,7 @@ public class StoryControllerGetTest {
     @LocalServerPort
     int randomServerPort;
 
-    @DisplayName("Get a of the story By Id")
+    @DisplayName("Get a the story By Id")
     @Test
     public void getAStoryById_shouldGet200() throws Exception {
         TestRestTemplate testRestTemplate = new TestRestTemplate();
@@ -46,7 +46,7 @@ public class StoryControllerGetTest {
         Assert.assertEquals(200, result.getStatusCodeValue());
     }
 
-    @DisplayName("Get a of the story By Id")
+    @DisplayName("Get a the story By Id")
     @Test
     public void getAStoryById_shouldGet404() throws Exception {
         TestRestTemplate testRestTemplate = new TestRestTemplate();

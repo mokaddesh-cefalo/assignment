@@ -28,7 +28,7 @@ public class StoryControllerDeleteTest {
     @LocalServerPort
     int randomServerPort;
 
-    @DisplayName("creator can patch stories")
+    @DisplayName("creator can delete stories")
     @Test
     public void deleteAStory_GetStatus200() throws Exception {
         RestTemplate restTemplate = getRestTemplate();

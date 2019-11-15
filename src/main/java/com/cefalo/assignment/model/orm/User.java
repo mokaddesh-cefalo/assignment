@@ -51,6 +51,10 @@ public class User {
     @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     List<Story> stories;
 
+    public User(String userName, String password){
+        this.userName = userName;
+        this.password = password;
+    }
     public User(String userName){
         this.userName = userName;
     }

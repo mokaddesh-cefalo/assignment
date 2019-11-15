@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.*;
+import java.util.stream.Stream;
 
 @Service
 public class StoryServiceImpl implements StoryService{
@@ -35,18 +36,6 @@ public class StoryServiceImpl implements StoryService{
         story.setId(null);
         story.setCreator(LoggedInUserInfo.getLoggedInUser());
         return storyRepository.save(story);
-    }
-
-    @Override
-    public List<Story> getAllStory(){
-        List<Story> stories = new ArrayList<>();
-
-        storyRepository.findAll().forEach(story -> {
-            story.setCreatorName();
-            stories.add(story);
-        });
-
-        return stories;
     }
 
     @Override
@@ -108,6 +97,7 @@ public class StoryServiceImpl implements StoryService{
             }
         }
         return newVersionOfStory;
+
     }
 
     private void throwExceptionForInvalidStoryUpdateorDeleteRequest(Long storyId, Story story) throws EntityNotFoundException, UnAuthorizedRequestException {
@@ -131,6 +121,9 @@ public class StoryServiceImpl implements StoryService{
         Pageable pageable = PageRequest.of(
                 (pageNumber < 0 ? 0 : pageNumber), limit, Sort.by(columnName).ascending()
         );
-        return storyRepository.findAll(pageable).toList();
+
+        List<Story> stories = storyRepository.findAll(pageable).toList();
+        for(Story story : stories) { story.setCreatorName(); }
+        return stories;
     }
 }
