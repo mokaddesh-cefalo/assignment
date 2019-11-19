@@ -1,5 +1,6 @@
 package com.cefalo.assignment.controller;
 
+import com.cefalo.assignment.security.AuthenticationResponse;
 import com.cefalo.assignment.service.business.AuthService;
 import com.cefalo.assignment.security.AuthenticationRequest;
 import com.cefalo.assignment.utils.ResponseEntityCreation;
@@ -25,11 +26,12 @@ public class JWTController {
         this.responseEntityCreation = responseEntityCreation;
     }
 
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
     @PostMapping
-    public ResponseEntity<?> getAuthToken(@RequestBody @Valid AuthenticationRequest authenticationRequest)
+    public AuthenticationResponse getAuthToken(@RequestBody @Valid AuthenticationRequest authenticationRequest)
             throws BadCredentialsException, MethodArgumentNotValidException {
 
-        return responseEntityCreation.buildResponseEntity(
-                authService.createAuthToken(authenticationRequest), HttpStatus.OK);
+        return authService.createAuthToken(authenticationRequest);
     }
 }
