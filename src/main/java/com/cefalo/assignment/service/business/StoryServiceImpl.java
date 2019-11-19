@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.*;
-import java.util.stream.Stream;
 
 @Service
 public class StoryServiceImpl implements StoryService{
@@ -59,10 +58,10 @@ public class StoryServiceImpl implements StoryService{
         newVersionOfStory.setId(storyId);
         Optional<Story> olderVersionOfStory = storyRepository.findById(storyId);
 
-        throwExceptionForInvalidStoryUpdateorDeleteRequest(storyId, olderVersionOfStory.orElse(null));
+        throwExceptionForInvalidStoryUpdateOrDeleteRequest(storyId, olderVersionOfStory.orElse(null));
 
         if(isPatchUpdate)
-            newVersionOfStory = updateOldStoryByNewStory(olderVersionOfStory.get(), newVersionOfStory);
+            newVersionOfStory = updateOldStoryByNewStory(olderVersionOfStory.orElse(null), newVersionOfStory);
 
         return storyRepository.save(newVersionOfStory);
     }
@@ -72,7 +71,7 @@ public class StoryServiceImpl implements StoryService{
     public int checkAuthorityThenDeleteStoryById(Long storyId) throws EntityNotFoundException, UnAuthorizedRequestException {
         Optional<Story> story = storyRepository.findById(storyId);
 
-        throwExceptionForInvalidStoryUpdateorDeleteRequest(storyId, story.orElse(null));
+        throwExceptionForInvalidStoryUpdateOrDeleteRequest(storyId, story.orElse(null));
         storyRepository.delete(story.get());
         return HttpStatus.OK.value();
     }
@@ -100,10 +99,13 @@ public class StoryServiceImpl implements StoryService{
 
     }
 
-    private void throwExceptionForInvalidStoryUpdateorDeleteRequest(Long storyId, Story story) throws EntityNotFoundException, UnAuthorizedRequestException {
+    void throwExceptionForInvalidStoryUpdateOrDeleteRequest(Long storyId, Story story) throws EntityNotFoundException, UnAuthorizedRequestException {
         if(story == null) {
             throw  new EntityNotFoundException(Story.class, "ID", storyId.toString());
         }
+
+        Optional.ofNullable(LoggedInUserInfo.getLoggedInUserName())
+                .orElseThrow(UnAuthorizedRequestException::new);
 
         if(!LoggedInUserInfo.getLoggedInUserName().equals(story.getCreatorName()))
             throw new UnAuthorizedRequestException(LoggedInUserInfo.getLoggedInUserName() + " is not authorized to update or delete story-" + storyId);

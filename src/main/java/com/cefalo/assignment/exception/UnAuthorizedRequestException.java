@@ -4,4 +4,7 @@ public class UnAuthorizedRequestException extends RuntimeException {
     public UnAuthorizedRequestException(String message) {
         super(message);
     }
+    public UnAuthorizedRequestException() {
+        super();
+    }
 }
