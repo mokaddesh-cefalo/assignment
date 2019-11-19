@@ -78,7 +78,7 @@ public class StoryController  {
     private ResponseEntity<?> getResponseEntityForUpdate(Story newVersionOfStory, Long storyId, Boolean isPatchUpdate)
             throws UnAuthorizedRequestException, EntityNotFoundException, IllegalAccessException {
 
-            Optional<Story> fetchedStory = storyService
+            Story fetchedStory = storyService
                     .checkAuthorityThenUpdateStoryById(storyId, newVersionOfStory, isPatchUpdate);
 
             return responseEntityCreation
