@@ -3,6 +3,7 @@ package com.cefalo.assignment.controller;
 
 import com.cefalo.assignment.exception.DuplicationOfUniqueValueException;
 import com.cefalo.assignment.exception.EntityNotFoundException;
+import com.cefalo.assignment.model.orm.Story;
 import com.cefalo.assignment.model.orm.User;
 import com.cefalo.assignment.service.business.UserService;
 import com.cefalo.assignment.utils.ExceptionHandlerUtil;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -33,24 +35,25 @@ public class UserController {
         this.responseEntityCreation = responseEntityCreation;
     }
 
+    @ResponseBody
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public ResponseEntity<?>  postUser(@RequestBody @Valid User user) throws MethodArgumentNotValidException, DuplicationOfUniqueValueException {
-        return responseEntityCreation
-                .buildResponseEntity(userService.postUser(user), HttpStatus.CREATED);
+    public User  postUser(@RequestBody @Valid User user) throws MethodArgumentNotValidException, DuplicationOfUniqueValueException {
+        return userService.postUser(user);
     }
 
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{user-name}")
-    public ResponseEntity<?>  getUser(@PathVariable(value ="user-name" ) String userName) throws EntityNotFoundException {
-        return  responseEntityCreation
-                .buildResponseEntity(userService.findUserByUserName(userName), HttpStatus.OK);
+    public User  getUser(@PathVariable(value ="user-name" ) String userName) throws EntityNotFoundException {
+        return  userService.findUserByUserName(userName);
     }
 
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{user-name}/stories")
-    public ResponseEntity<?>  getUserStories(@PathVariable(value ="user-name" ) String userName) throws EntityNotFoundException{
-        User user = userService.findUserByUserName(userName);
-
-        return responseEntityCreation
-                .buildResponseEntity(user.getStories(), HttpStatus.OK);
+    public List<Story> getUserStories(@PathVariable(value ="user-name" ) String userName) throws EntityNotFoundException{
+        return userService.findUserByUserName(userName).getStories();
     }
 
 }

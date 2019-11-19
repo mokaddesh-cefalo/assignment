@@ -8,6 +8,13 @@ import org.springframework.stereotype.Service;
 @Component
 public class LoggedInUserInfo {
     public static String getLoggedInUserName(){
+
+        if(SecurityContextHolder.getContext() == null) {
+            return null;
+        }
+        if(SecurityContextHolder.getContext().getAuthentication() == null) {
+            return null;
+        }
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 

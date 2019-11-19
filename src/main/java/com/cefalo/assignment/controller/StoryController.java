@@ -34,12 +34,13 @@ public class StoryController  {
         this.responseEntityCreation = responseEntityCreation;
     }
 
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/{story-id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<?> getStoryById
+    public Story getStoryById
             (@PathVariable(value = "story-id") Long storyId) throws EntityNotFoundException {
 
-        return responseEntityCreation
-                .buildResponseEntity(storyService.getStoryById(storyId), HttpStatus.OK);
+        return storyService.getStoryById(storyId);
     }
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -53,37 +54,38 @@ public class StoryController  {
         return storyService.findAllForPagination(pageNumber, limit, sortByColumnName);
     }
 
+    @ResponseBody
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<?>  postStoryObject(@RequestBody @Valid Story story)
+    public Story  postStoryObject(@RequestBody @Valid Story story)
             throws InvalidFormatException {
 
-            return responseEntityCreation
-                    .buildResponseEntity(storyService.saveNewStoryObject(story), HttpStatus.CREATED);
+            return storyService.saveNewStoryObject(story);
     }
 
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
     @PatchMapping(value = "/{story-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<?>  patchStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "story-id") Long storyId)
+    public Story  patchStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "story-id") Long storyId)
             throws UnAuthorizedRequestException, EntityNotFoundException, IllegalAccessException {
 
         return getResponseEntityForUpdate(newVersionOfStory, storyId, true);
     }
 
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
     @PutMapping(value = "/{story-id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<?>  putStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "story-id") Long storyId)
+    public Story putStoryById(@RequestBody Story newVersionOfStory, @PathVariable(value = "story-id") Long storyId)
             throws UnAuthorizedRequestException, EntityNotFoundException, IllegalAccessException  {
 
         return getResponseEntityForUpdate(newVersionOfStory, storyId, false);
     }
 
-    private ResponseEntity<?> getResponseEntityForUpdate(Story newVersionOfStory, Long storyId, Boolean isPatchUpdate)
+    private Story getResponseEntityForUpdate(Story newVersionOfStory, Long storyId, Boolean isPatchUpdate)
             throws UnAuthorizedRequestException, EntityNotFoundException, IllegalAccessException {
 
-            Optional<Story> fetchedStory = storyService
+            return storyService
                     .checkAuthorityThenUpdateStoryById(storyId, newVersionOfStory, isPatchUpdate);
-
-            return responseEntityCreation
-                    .buildResponseEntity(fetchedStory, HttpStatus.OK);
-
     }
 
     @DeleteMapping("/{story-id}")

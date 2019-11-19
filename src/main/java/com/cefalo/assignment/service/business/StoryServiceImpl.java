@@ -39,7 +39,7 @@ public class StoryServiceImpl implements StoryService{
     }
 
     @Override
-    public Optional<Story> getStoryById(Long storyId) throws EntityNotFoundException {
+    public Story getStoryById(Long storyId) throws EntityNotFoundException {
         Optional<Story> story = storyRepository.findById(storyId);
 
         if(!story.isPresent()) {
@@ -47,12 +47,12 @@ public class StoryServiceImpl implements StoryService{
         }
 
         story.get().setCreatorName();
-        return story;
+        return story.get();
     }
 
     /**method should have smaller size and single purpose but separating the concern cost a DB call*/
     @Override
-    public Optional<Story> checkAuthorityThenUpdateStoryById
+    public Story checkAuthorityThenUpdateStoryById
             (Long storyId, Story newVersionOfStory,Boolean isPatchUpdate)
             throws EntityNotFoundException, UnAuthorizedRequestException, IllegalAccessException {
 
@@ -64,7 +64,7 @@ public class StoryServiceImpl implements StoryService{
         if(isPatchUpdate)
             newVersionOfStory = updateOldStoryByNewStory(olderVersionOfStory.get(), newVersionOfStory);
 
-        return Optional.ofNullable(storyRepository.save(newVersionOfStory));
+        return storyRepository.save(newVersionOfStory);
     }
 
     /**method should have smaller size and single purpose but separating the concern cost a DB call*/
