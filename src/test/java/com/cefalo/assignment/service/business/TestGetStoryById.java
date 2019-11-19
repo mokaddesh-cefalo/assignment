@@ -48,7 +48,7 @@ public class TestGetStoryById {
     }
 
     @Test
-    public void findStoryByIdSuccesfully() {
+    public void findStoryByIdSuccessfully() {
         Story story = new Story("t1", "b1", stringToDate("22 NOV 1994"));
 
         when(storyRepository.findById(anyLong())).thenReturn(Optional.of(story));

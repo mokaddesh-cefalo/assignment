@@ -38,7 +38,7 @@ public class StoryControllerGetTest {
     @Test
     public void getAStoryById_shouldGet200() throws Exception {
         TestRestTemplate testRestTemplate = new TestRestTemplate();
-        String url = "http://localhost:" + randomServerPort + "/api/stories/1";
+        String url = "http://localhost:" + randomServerPort + "/api/stories/12";
 
         ResponseEntity<Story> result
                 = testRestTemplate.exchange(url, HttpMethod.GET, request,Story.class);
