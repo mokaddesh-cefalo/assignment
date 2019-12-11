@@ -3,6 +3,8 @@ package com.cefalo.assignment.config;
 import com.cefalo.assignment.security.filters.JWTRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
+import org.springframework.boot.actuate.health.HealthEndpoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -35,6 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .authorizeRequests()
+                .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
+                //.requestMatchers(EndpointRequest.to(HealthEndpoint.class)).permitAll()
                 .antMatchers(HttpMethod.POST,"/authenticate").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/stories/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/stories/**").hasRole("USER")
@@ -42,6 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PATCH, "/api/stories/**").hasRole("USER")
                 .antMatchers(HttpMethod.DELETE, "/api/stories/**").hasRole("USER")
                 .antMatchers(HttpMethod.POST, "/api/users/**").permitAll()
+                .antMatchers("/endpoint/**").permitAll()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
